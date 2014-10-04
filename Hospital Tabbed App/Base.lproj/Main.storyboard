@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller-->
@@ -17,8 +18,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="ZZb-tY-zet" kind="relationship" relationship="viewControllers" id="1sS-4H-eEy"/>
-                        <segue destination="d3C-RJ-Ng5" kind="relationship" relationship="viewControllers" id="rsh-aU-6HZ"/>
                         <segue destination="KCj-Ab-jJk" kind="relationship" relationship="viewControllers" id="B4I-iN-uGK"/>
+                        <segue destination="d3C-RJ-Ng5" kind="relationship" relationship="viewControllers" id="rsh-aU-6HZ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -38,7 +39,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J1s-7S-aN3">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="barTintColor" red="0.0039215688589999999" green="0.57647061349999995" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 <items>
                                     <navigationItem title="Settings" id="BsO-Fj-rOK"/>
                                 </items>
@@ -67,27 +69,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="center" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="xTb-25-bgJ">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="600" id="Nvz-oC-b72"/>
-                                </constraints>
-                                <color key="barTintColor" red="0.0039215688593685627" green="0.57647061347961426" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SZm-hU-QUl">
+                                <rect key="frame" x="0.0" y="64" width="375" height="564"/>
+                            </scrollView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YdE-Vo-koB">
+                                <rect key="frame" x="-5" y="20" width="380" height="44"/>
+                                <color key="barTintColor" red="0.0039215688589999999" green="0.57647061349999995" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Home" id="wsg-q2-cjd"/>
+                                    <navigationItem title="Home" id="WR7-S6-G7d"/>
                                 </items>
                             </navigationBar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SZm-hU-QUl">
-                                <rect key="frame" x="0.0" y="64" width="375" height="564"/>
-                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xTb-25-bgJ" firstAttribute="leading" secondItem="rEf-Dd-j8r" secondAttribute="leading" id="G7i-mY-Vit"/>
-                            <constraint firstItem="xTb-25-bgJ" firstAttribute="top" secondItem="rEf-Dd-j8r" secondAttribute="bottom" id="YWh-Bx-sss"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="SZm-hU-QUl" secondAttribute="bottom" constant="39" id="PjI-1n-vQG"/>
+                            <constraint firstItem="SZm-hU-QUl" firstAttribute="trailing" secondItem="50h-ha-CHt" secondAttribute="trailing" id="XtC-xM-f9J"/>
+                            <constraint firstItem="SZm-hU-QUl" firstAttribute="leading" secondItem="50h-ha-CHt" secondAttribute="leading" id="eyj-nt-uor"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="first" id="LqU-So-6jp"/>
@@ -111,8 +112,9 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oi5-6t-OS4">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="barTintColor" red="0.0039215688589999999" green="0.57647061349999995" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 <items>
-                                    <navigationItem title="Title" id="HIr-qC-83d"/>
+                                    <navigationItem title="Edit" id="HIr-qC-83d"/>
                                 </items>
                             </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="diT-n3-ePG">
@@ -121,7 +123,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="49e-Tb-3d3" kind="show" id="Uxt-sw-QEV"/>
+                                    <segue destination="49e-Tb-3d3" kind="show" id="Dtx-oo-f7B"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r7j-kY-Hdq">
@@ -130,6 +132,39 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qX-FK-eT3">
+                                <rect key="frame" x="81" y="131" width="55" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone Number:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WpD-Jr-rzQ">
+                                <rect key="frame" x="15" y="178" width="121" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CmN-aC-fJU">
+                                <rect key="frame" x="68" y="227" width="68" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Physician Name Here" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mtz-N5-cZh">
+                                <rect key="frame" x="144" y="127" width="210" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Phone Number Here" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qUd-ld-ASj">
+                                <rect key="frame" x="144" y="174" width="210" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Address Here" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DFT-ro-xDX">
+                                <rect key="frame" x="144" y="223" width="210" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -137,7 +172,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0nM-A2-72S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1609.5" y="133.5"/>
+            <point key="canvasLocation" x="1581.5" y="99.5"/>
         </scene>
         <!--Contact-->
         <scene sceneID="p09-7Q-bj6">
@@ -152,10 +187,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oFH-51-Now">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="barTintColor" red="0.0039215688589999999" green="0.57647061349999995" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 <items>
                                     <navigationItem title="Contact Physician" id="ARl-bw-YEP">
-                                        <barButtonItem key="leftBarButtonItem" title="Edit" id="ygM-bZ-aIu">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="ygM-bZ-aIu" colorLabel="IBBuiltInLabel-Red">
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <segue destination="G9m-rN-HN6" kind="show" id="p30-jg-2fU"/>
                                             </connections>
@@ -171,12 +208,6 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone Number:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjU-bz-SVN">
                                 <rect key="frame" x="71" y="215" width="121" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAa-uE-N6e">
-                                <rect key="frame" x="124" y="270" width="68" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -206,7 +237,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7du-CN-f15" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="827.5" y="341.5"/>
+            <point key="canvasLocation" x="1067.5" y="659.5"/>
         </scene>
     </scenes>
     <resources>
