@@ -1,1 +1,15 @@
-Name TBD
+# Health Alert
+==============
+
+This is an application to provide patients, doctors, and selected contacts with realtime health notifications. The patient and doctor are able to set an acceptable range of values for any health statistic. For example, a patient may have a range of 160 lbs to 180 lbs for their weight. If a measurement is taken outside of this range, the patient, doctor, and selected contacts will all be notified by call and/or text. (This is decided in the user’s settings.) The purpose of this application is to help patients commit to better health with a support network of doctors and friends.
+
+
+## Notifications
+----------------
+
+Notifications are made via call or text using the Twilio Calling and Texting API. In this repository, we have included a copy of the code, but it is actually hosted in a separate repository on Heroku. The server accepts two GET requests: /notifyWithCall and /notifyWithText. Both requests require several parameters as well: recipientName, patientName, recipientPhoneNumber, statName, statUnit, statValue, statLowerBound, and statUpperBound. The Twilio account we are currently using is a limited free account and will run out of credits after a few hundred notifications.
+
+## Database
+----------------
+
+[To be filled in by Wei in next commit]
