@@ -419,6 +419,7 @@
 				82512AA719D9B84900454864 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		82512AA819D9B84900454864 /* Build configuration list for PBXNativeTarget "Hospital Tabbed AppTests" */ = {
 			isa = XCConfigurationList;
@@ -427,6 +428,7 @@
 				82512AAA19D9B84900454864 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
