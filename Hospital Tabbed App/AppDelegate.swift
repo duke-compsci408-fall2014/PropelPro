@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import HealthKit
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,8 +18,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        // Example: Register for background notifications
+        let sampleType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount);
+        let query = HKObserverQuery(sampleType: sampleType, predicate: nil) {
+            query, completionHandler, error in
+            if error != nil {
+                // Perform Proper Error Handling Here...
+                println("*** An error occured while setting up the stepCount observer." +
+                    (error.localizedDescription) + "***");
+                abort();
+            }
+            var description : String = query.debugDescription;
+            // Take whatever steps are necessary to update your app's data and UI
+            // This may involve executing other queries
+            // TODO: check if the changed data is in bounds
+        }
+        var healthStore : HKHealthStore = HKHealthStore();
+        healthStore.executeQuery(query);
+        
+        
         return true
     }
+    
+    // Places a GET request
+    // Note: parameters must be included like the following example:
+    // www.thisisaurl.com/blah?p1=chinmay&p2=google&p3=abcdefg
+    func makeHTTPRequest(urlStringWithParameters : String) {
+        let url = NSURL(string: urlStringWithParameters)
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+            println(NSString(data: data, encoding: NSUTF8StringEncoding))
+        }
+        task.resume()
+    }
+    
+    
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
