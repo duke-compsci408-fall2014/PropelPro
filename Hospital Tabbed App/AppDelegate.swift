@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        
+        /*
         // Example: Register for background notifications
         let sampleType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount);
         let query = HKObserverQuery(sampleType: sampleType, predicate: nil) {
@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         var healthStore : HKHealthStore = HKHealthStore();
         healthStore.executeQuery(query);
+        */
         
         
         return true
