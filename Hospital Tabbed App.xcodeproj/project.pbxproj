@@ -13,10 +13,11 @@
 		82512A9619D9B84900454864 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82512A9419D9B84900454864 /* LaunchScreen.xib */; };
 		82512AA219D9B84900454864 /* Hospital_Tabbed_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82512AA119D9B84900454864 /* Hospital_Tabbed_AppTests.swift */; };
 		82512AB019D9ED5F00454864 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82512AAF19D9ED5F00454864 /* HomeViewController.swift */; };
-		82512AB219D9ED6D00454864 /* GoalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82512AB119D9ED6D00454864 /* GoalsViewController.swift */; };
-		82512AB419D9ED7900454864 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82512AB319D9ED7900454864 /* ContactViewController.swift */; };
 		82512AB619D9ED8700454864 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82512AB519D9ED8700454864 /* SettingsViewController.swift */; };
 		82D9E60619EA2F6C0077BE29 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D9E60519EA2F6C0077BE29 /* HealthKit.framework */; };
+		82ED73D11A01C1FD001CF2C9 /* AddPhysicianController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ED73D01A01C1FD001CF2C9 /* AddPhysicianController.swift */; };
+		82ED73D31A01D546001CF2C9 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ED73D21A01D546001CF2C9 /* JSON.swift */; };
+		82ED73D51A01D590001CF2C9 /* DoctorsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ED73D41A01D590001CF2C9 /* DoctorsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,11 +41,12 @@
 		82512AA019D9B84900454864 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82512AA119D9B84900454864 /* Hospital_Tabbed_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hospital_Tabbed_AppTests.swift; sourceTree = "<group>"; };
 		82512AAF19D9ED5F00454864 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		82512AB119D9ED6D00454864 /* GoalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalsViewController.swift; sourceTree = "<group>"; };
-		82512AB319D9ED7900454864 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		82512AB519D9ED8700454864 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		82D9E60519EA2F6C0077BE29 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		82D9E60719EA2F6C0077BE29 /* Hospital Tabbed App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Hospital Tabbed App.entitlements"; sourceTree = "<group>"; };
+		82ED73D01A01C1FD001CF2C9 /* AddPhysicianController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhysicianController.swift; sourceTree = "<group>"; };
+		82ED73D21A01D546001CF2C9 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		82ED73D41A01D590001CF2C9 /* DoctorsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoctorsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,9 +93,10 @@
 				82D9E60719EA2F6C0077BE29 /* Hospital Tabbed App.entitlements */,
 				82512A8919D9B84900454864 /* AppDelegate.swift */,
 				82512AAF19D9ED5F00454864 /* HomeViewController.swift */,
+				82ED73D21A01D546001CF2C9 /* JSON.swift */,
 				82512AB519D9ED8700454864 /* SettingsViewController.swift */,
-				82512AB119D9ED6D00454864 /* GoalsViewController.swift */,
-				82512AB319D9ED7900454864 /* ContactViewController.swift */,
+				82ED73D41A01D590001CF2C9 /* DoctorsVC.swift */,
+				82ED73D01A01C1FD001CF2C9 /* AddPhysicianController.swift */,
 				82512A8F19D9B84900454864 /* Main.storyboard */,
 				82512A9219D9B84900454864 /* Images.xcassets */,
 				82512A9419D9B84900454864 /* LaunchScreen.xib */,
@@ -234,10 +237,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				82512A8A19D9B84900454864 /* AppDelegate.swift in Sources */,
-				82512AB219D9ED6D00454864 /* GoalsViewController.swift in Sources */,
+				82ED73D31A01D546001CF2C9 /* JSON.swift in Sources */,
 				82512AB019D9ED5F00454864 /* HomeViewController.swift in Sources */,
-				82512AB419D9ED7900454864 /* ContactViewController.swift in Sources */,
+				82ED73D11A01C1FD001CF2C9 /* AddPhysicianController.swift in Sources */,
 				82512AB619D9ED8700454864 /* SettingsViewController.swift in Sources */,
+				82ED73D51A01D590001CF2C9 /* DoctorsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
