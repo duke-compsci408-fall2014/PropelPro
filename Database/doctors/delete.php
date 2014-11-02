@@ -9,14 +9,14 @@ if(mysqli_connect_errno()){
 
 //note deleting a doctor also requires a delete from the patient_doctor table
 
-$sql = "DELETE FROM doctors WHERE doctor_id = ".$_GET['doctor_id']; 
+$sql = "DELETE FROM patients_doctors WHERE doctor_id = ".$_GET['doctor_id'];
 
 if($con->query($sql) == TRUE){
-	echo "deletion of a doctor is successful\n";
+	echo "deletion of a patients_doctors is successful\n";
 	// update patient_doctor table to relect the change
-	$sql = "DELETE FROM patients_doctors WHERE doctor_id = ".$_GET['doctor_id'];
+	$sql = "DELETE FROM doctors WHERE doctor_id = ".$_GET['doctor_id']; 
 	if($con->query($sql) == TRUE){
-		echo "deletion from patients_doctors is successful";
+		echo "deletion from doctor is successful";
 	}else{
 			echo "Error: " . $sql . "<br>" . $con->error;
 	}

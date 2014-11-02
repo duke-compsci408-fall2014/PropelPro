@@ -12,7 +12,7 @@ if (mysqli_connect_errno())
 
 $sql = "UPDATE stats
 		SET statName = ".$_GET['statName'].",
-		 	statUnit = ".$_GET['statUnit'].", 
+		 	statUnit = ".$_GET['statUnit']." 
 		WHERE stat_id = ".$_GET['stat_id'];
 
 
