@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Nov 01, 2014 at 04:41 PM
+-- Generation Time: Nov 01, 2014 at 05:18 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.4.31
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `health_alertdb`
 --
-CREATE DATABASE IF NOT EXISTS `health_alertdb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `health_alertdb`;
 
 -- --------------------------------------------------------
 
@@ -28,12 +26,11 @@ USE `health_alertdb`;
 -- Table structure for table `bounds`
 --
 
-DROP TABLE IF EXISTS `bounds`;
 CREATE TABLE IF NOT EXISTS `bounds` (
   `patient_id` varchar(100) NOT NULL,
   `stat_id` int(11) NOT NULL,
-  `statLowerBound` int(11) NOT NULL,
-  `statUpperBound` int(11) NOT NULL
+  `statLowerBound` float NOT NULL DEFAULT '0',
+  `statUpperBound` float NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -42,21 +39,18 @@ CREATE TABLE IF NOT EXISTS `bounds` (
 -- Table structure for table `doctors`
 --
 
-DROP TABLE IF EXISTS `doctors`;
 CREATE TABLE IF NOT EXISTS `doctors` (
 `doctor_id` int(11) NOT NULL,
   `doctorName` varchar(100) NOT NULL DEFAULT '',
   `doctorPhoneNumber` varchar(100) NOT NULL DEFAULT '',
   `doctorAddress` varchar(200) NOT NULL DEFAULT ''
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
--- --------------------------------------------------------
 
 --
 -- Table structure for table `notifications`
 --
 
-DROP TABLE IF EXISTS `notifications`;
 CREATE TABLE IF NOT EXISTS `notifications` (
   `patient_id` varchar(100) NOT NULL,
   `recipientName` varchar(100) NOT NULL,
@@ -65,62 +59,37 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `textsOn` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
 
 --
 -- Table structure for table `patients`
 --
 
-DROP TABLE IF EXISTS `patients`;
 CREATE TABLE IF NOT EXISTS `patients` (
   `patient_id` varchar(100) NOT NULL,
   `patientName` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `patients`
---
-
-INSERT INTO `patients` (`patient_id`, `patientName`) VALUES
-('12', 'bob');
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `patients_doctors`
 --
 
-DROP TABLE IF EXISTS `patients_doctors`;
 CREATE TABLE IF NOT EXISTS `patients_doctors` (
   `patient_id` varchar(100) NOT NULL,
   `doctor_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
 
 --
 -- Table structure for table `stats`
 --
 
-DROP TABLE IF EXISTS `stats`;
 CREATE TABLE IF NOT EXISTS `stats` (
 `stat_id` int(11) NOT NULL,
   `statName` varchar(100) NOT NULL,
   `statUnit` varchar(100) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
---
--- Dumping data for table `stats`
---
-
-INSERT INTO `stats` (`stat_id`, `statName`, `statUnit`) VALUES
-(1, 'weight', 'pound'),
-(2, 'BAC', 'BAC'),
-(3, 'footsteps', 'footsteps');
-
---
--- Indexes for dumped tables
---
 
 --
 -- Indexes for table `bounds`
@@ -166,12 +135,12 @@ ALTER TABLE `stats`
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `stats`
 --
 ALTER TABLE `stats`
-MODIFY `stat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `stat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --
