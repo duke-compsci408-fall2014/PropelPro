@@ -10,11 +10,10 @@ if (mysqli_connect_errno())
 }
 
 
-$sql = "UPDATE doctors
-		SET doctorName = ".$_GET['doctorName'].",
-		 	doctorPhoneNumber = ".$_GET['doctorPhoneNumber'].", 
-		 	doctorAddress = ".$_GET['doctorAddress']."
-		WHERE doctor_id = ".$_GET['doctor_id'];
+$sql = "UPDATE notifications
+		SET recipientPhoneNumber = ".$_GET['recipientPhoneNumber']." 
+		WHERE patient_id = ".$_GET['patient_id']. 
+		"AND recipientName = ".$_GET['recipientName'];
 
 
 if ($con->query($sql) == TRUE) {

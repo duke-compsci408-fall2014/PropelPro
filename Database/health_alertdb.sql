@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Nov 01, 2014 at 05:18 PM
+-- Generation Time: Nov 02, 2014 at 11:14 AM
 -- Server version: 5.5.38
 -- PHP Version: 5.4.31
 
@@ -29,11 +29,10 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `bounds` (
   `patient_id` varchar(100) NOT NULL,
   `stat_id` int(11) NOT NULL,
-  `statLowerBound` float NOT NULL DEFAULT '0',
-  `statUpperBound` float NOT NULL DEFAULT '0'
+  `statLowerBound` float NOT NULL,
+  `statUpperBound` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
 
 --
 -- Table structure for table `doctors`
@@ -88,7 +87,8 @@ CREATE TABLE IF NOT EXISTS `stats` (
 `stat_id` int(11) NOT NULL,
   `statName` varchar(100) NOT NULL,
   `statUnit` varchar(100) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
 
 
 --
@@ -119,7 +119,7 @@ ALTER TABLE `patients`
 -- Indexes for table `patients_doctors`
 --
 ALTER TABLE `patients_doctors`
- ADD KEY `patient_id` (`patient_id`), ADD KEY `doctor_id` (`doctor_id`);
+ ADD PRIMARY KEY (`patient_id`,`doctor_id`), ADD KEY `doctor_id` (`doctor_id`);
 
 --
 -- Indexes for table `stats`
@@ -127,9 +127,6 @@ ALTER TABLE `patients_doctors`
 ALTER TABLE `stats`
  ADD PRIMARY KEY (`stat_id`);
 
---
--- AUTO_INCREMENT for dumped tables
---
 
 --
 -- AUTO_INCREMENT for table `doctors`
@@ -140,7 +137,7 @@ MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 -- AUTO_INCREMENT for table `stats`
 --
 ALTER TABLE `stats`
-MODIFY `stat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `stat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- Constraints for dumped tables
 --
