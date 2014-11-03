@@ -51,8 +51,8 @@ class AddPhysicianController : UIViewController {
     func makeHTTPRequest(urlStringWithParameters : String) {
         let url = NSURL(string: urlStringWithParameters)
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-            if error == nil {
-                println("error!");
+            if error != nil {
+                println("error! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
             } else {
                 println("success! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
             }
