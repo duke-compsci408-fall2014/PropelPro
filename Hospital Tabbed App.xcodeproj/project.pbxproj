@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		823593581A02B935009A4FEA /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823593571A02B935009A4FEA /* HealthKit.framework */; };
+		8235D3951A07F509003789BC /* JSONArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8235D3941A07F509003789BC /* JSONArray.swift */; };
+		8235D3971A082552003789BC /* Doctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8235D3961A082552003789BC /* Doctor.swift */; };
+		8235D3991A082BC1003789BC /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8235D3981A082BC1003789BC /* StringHelper.swift */; };
 		82512A8A19D9B84900454864 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82512A8919D9B84900454864 /* AppDelegate.swift */; };
 		82512A9119D9B84900454864 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82512A8F19D9B84900454864 /* Main.storyboard */; };
 		82512A9319D9B84900454864 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82512A9219D9B84900454864 /* Images.xcassets */; };
@@ -16,8 +19,8 @@
 		82512AB019D9ED5F00454864 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82512AAF19D9ED5F00454864 /* HomeViewController.swift */; };
 		82512AB619D9ED8700454864 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82512AB519D9ED8700454864 /* SettingsViewController.swift */; };
 		82D39D4D1A07E1D5006B35EC /* DoctorsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D39D4C1A07E1D5006B35EC /* DoctorsVC.swift */; };
+		82D39D511A07F20C006B35EC /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D39D501A07F20C006B35EC /* JSON.swift */; };
 		82ED73D11A01C1FD001CF2C9 /* AddPhysicianController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ED73D01A01C1FD001CF2C9 /* AddPhysicianController.swift */; };
-		82ED73D31A01D546001CF2C9 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ED73D21A01D546001CF2C9 /* JSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +35,9 @@
 
 /* Begin PBXFileReference section */
 		823593571A02B935009A4FEA /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		8235D3941A07F509003789BC /* JSONArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONArray.swift; sourceTree = "<group>"; };
+		8235D3961A082552003789BC /* Doctor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Doctor.swift; sourceTree = "<group>"; };
+		8235D3981A082BC1003789BC /* StringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
 		82512A8419D9B84900454864 /* Hospital Tabbed App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hospital Tabbed App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82512A8819D9B84900454864 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82512A8919D9B84900454864 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -44,9 +50,9 @@
 		82512AAF19D9ED5F00454864 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		82512AB519D9ED8700454864 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		82D39D4C1A07E1D5006B35EC /* DoctorsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoctorsVC.swift; sourceTree = "<group>"; };
+		82D39D501A07F20C006B35EC /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		82D9E60719EA2F6C0077BE29 /* Hospital Tabbed App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Hospital Tabbed App.entitlements"; sourceTree = "<group>"; };
 		82ED73D01A01C1FD001CF2C9 /* AddPhysicianController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhysicianController.swift; sourceTree = "<group>"; };
-		82ED73D21A01D546001CF2C9 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +99,11 @@
 				82D9E60719EA2F6C0077BE29 /* Hospital Tabbed App.entitlements */,
 				82512A8919D9B84900454864 /* AppDelegate.swift */,
 				82512AAF19D9ED5F00454864 /* HomeViewController.swift */,
-				82ED73D21A01D546001CF2C9 /* JSON.swift */,
+				82D39D501A07F20C006B35EC /* JSON.swift */,
+				8235D3981A082BC1003789BC /* StringHelper.swift */,
+				8235D3941A07F509003789BC /* JSONArray.swift */,
 				82D39D4C1A07E1D5006B35EC /* DoctorsVC.swift */,
+				8235D3961A082552003789BC /* Doctor.swift */,
 				82512AB519D9ED8700454864 /* SettingsViewController.swift */,
 				82ED73D01A01C1FD001CF2C9 /* AddPhysicianController.swift */,
 				82512A8F19D9B84900454864 /* Main.storyboard */,
@@ -240,11 +249,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				82512A8A19D9B84900454864 /* AppDelegate.swift in Sources */,
-				82ED73D31A01D546001CF2C9 /* JSON.swift in Sources */,
 				82512AB019D9ED5F00454864 /* HomeViewController.swift in Sources */,
+				8235D3971A082552003789BC /* Doctor.swift in Sources */,
+				8235D3991A082BC1003789BC /* StringHelper.swift in Sources */,
 				82ED73D11A01C1FD001CF2C9 /* AddPhysicianController.swift in Sources */,
+				82D39D511A07F20C006B35EC /* JSON.swift in Sources */,
 				82512AB619D9ED8700454864 /* SettingsViewController.swift in Sources */,
 				82D39D4D1A07E1D5006B35EC /* DoctorsVC.swift in Sources */,
+				8235D3951A07F509003789BC /* JSONArray.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

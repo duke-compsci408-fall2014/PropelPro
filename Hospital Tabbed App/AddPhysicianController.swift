@@ -23,19 +23,21 @@ class AddPhysicianController : UIViewController {
         
     func buttonAction(sender:UIButton!)
     {
+        var patientId = UIDevice.currentDevice().identifierForVendor.UUIDString;
         var nameStr : String = nameField.text;
         var phoneNumberStr : String = phoneNumberField.text;
         var addressStr : String = addressField.text;
         println(nameStr)
         println(phoneNumberStr)
         println(addressStr)
-        var url = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/doctors/insert.php?doctorName='"+nameStr+"'&doctorPhoneNumber='"+phoneNumberStr+"'&doctorAddress='"+addressStr+"'";
+        var url = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/doctors/insert.php?patient_id='\(patientId)'&doctorName='\(nameStr)'&doctorPhoneNumber='\(phoneNumberStr)'&doctorAddress='\(addressStr)'";
         println("dirty url:" + url);
         url = cleanURLString(url)
         println("clean url:" + url);
         makeHTTPRequest(url)
     }
     
+    // TODO: clean it up to comply with our JSON parsing assumptions
     func cleanURLString(url : String) ->String {
         var out : String = "";
         for char in url {
