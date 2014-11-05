@@ -41,7 +41,7 @@ class DoctorsVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.items = [] // clear the old stuff first
                 for obj : JSON in jsonArray.getObjects() {
                     var map : [String : String] = obj.getMap()
-                    var doc = Doctor(name: map["doctorName"]!, number: map["doctorPhoneNumber"]!, address: map["doctorAddress"]!)
+                    var doc = Doctor(id: map["doctor_id"]!, name: map["doctorName"]!, number: map["doctorPhoneNumber"]!, address: map["doctorAddress"]!)
                     self.items.append(doc)
                 }
                 dispatch_async(dispatch_get_main_queue(), {
@@ -61,7 +61,7 @@ class DoctorsVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
         var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         
         var doc : Doctor = self.items[indexPath.row]
-        cell.textLabel.text = doc.doctorName
+        cell.textLabel.text = doc.toString()
         
         return cell
     }
