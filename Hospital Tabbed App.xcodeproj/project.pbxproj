@@ -17,7 +17,9 @@
 		82512A9619D9B84900454864 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82512A9419D9B84900454864 /* LaunchScreen.xib */; };
 		82512AA219D9B84900454864 /* Hospital_Tabbed_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82512AA119D9B84900454864 /* Hospital_Tabbed_AppTests.swift */; };
 		82512AB019D9ED5F00454864 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82512AAF19D9ED5F00454864 /* HomeViewController.swift */; };
-		82512AB619D9ED8700454864 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82512AB519D9ED8700454864 /* SettingsViewController.swift */; };
+		82B787B61A0A8BA900E03B78 /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B787B51A0A8BA900E03B78 /* ContactsVC.swift */; };
+		82B787B81A0A8BD000E03B78 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B787B71A0A8BD000E03B78 /* Contact.swift */; };
+		82B787BA1A0A8D5A00E03B78 /* AddContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B787B91A0A8D5A00E03B78 /* AddContactController.swift */; };
 		82D39D4D1A07E1D5006B35EC /* DoctorsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D39D4C1A07E1D5006B35EC /* DoctorsVC.swift */; };
 		82D39D511A07F20C006B35EC /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D39D501A07F20C006B35EC /* JSON.swift */; };
 		82ED73D11A01C1FD001CF2C9 /* AddPhysicianController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ED73D01A01C1FD001CF2C9 /* AddPhysicianController.swift */; };
@@ -48,7 +50,9 @@
 		82512AA019D9B84900454864 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82512AA119D9B84900454864 /* Hospital_Tabbed_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hospital_Tabbed_AppTests.swift; sourceTree = "<group>"; };
 		82512AAF19D9ED5F00454864 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		82512AB519D9ED8700454864 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		82B787B51A0A8BA900E03B78 /* ContactsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsVC.swift; sourceTree = "<group>"; };
+		82B787B71A0A8BD000E03B78 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		82B787B91A0A8D5A00E03B78 /* AddContactController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactController.swift; sourceTree = "<group>"; };
 		82D39D4C1A07E1D5006B35EC /* DoctorsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoctorsVC.swift; sourceTree = "<group>"; };
 		82D39D501A07F20C006B35EC /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		82D9E60719EA2F6C0077BE29 /* Hospital Tabbed App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Hospital Tabbed App.entitlements"; sourceTree = "<group>"; };
@@ -104,8 +108,10 @@
 				8235D3941A07F509003789BC /* JSONArray.swift */,
 				82D39D4C1A07E1D5006B35EC /* DoctorsVC.swift */,
 				8235D3961A082552003789BC /* Doctor.swift */,
-				82512AB519D9ED8700454864 /* SettingsViewController.swift */,
 				82ED73D01A01C1FD001CF2C9 /* AddPhysicianController.swift */,
+				82B787B51A0A8BA900E03B78 /* ContactsVC.swift */,
+				82B787B71A0A8BD000E03B78 /* Contact.swift */,
+				82B787B91A0A8D5A00E03B78 /* AddContactController.swift */,
 				82512A8F19D9B84900454864 /* Main.storyboard */,
 				82512A9219D9B84900454864 /* Images.xcassets */,
 				82512A9419D9B84900454864 /* LaunchScreen.xib */,
@@ -254,9 +260,11 @@
 				8235D3991A082BC1003789BC /* StringHelper.swift in Sources */,
 				82ED73D11A01C1FD001CF2C9 /* AddPhysicianController.swift in Sources */,
 				82D39D511A07F20C006B35EC /* JSON.swift in Sources */,
-				82512AB619D9ED8700454864 /* SettingsViewController.swift in Sources */,
+				82B787BA1A0A8D5A00E03B78 /* AddContactController.swift in Sources */,
+				82B787B81A0A8BD000E03B78 /* Contact.swift in Sources */,
 				82D39D4D1A07E1D5006B35EC /* DoctorsVC.swift in Sources */,
 				8235D3951A07F509003789BC /* JSONArray.swift in Sources */,
+				82B787B61A0A8BA900E03B78 /* ContactsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
