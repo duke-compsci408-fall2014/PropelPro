@@ -9,8 +9,8 @@
 import UIKit
 
 class DoctorsVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var tableView: UITableView!
     var items: [Doctor] = []
     
     override func viewDidLoad() {
