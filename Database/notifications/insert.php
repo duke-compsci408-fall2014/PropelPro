@@ -9,8 +9,8 @@ if (mysqli_connect_errno())
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
-$sql = "INSERT INTO notifications (patient_id, recipientName, recipientPhoneNumber) 
-		VALUES (".$_GET['patient_id'].", ".$_GET['recipientName'].", ".$_GET['recipientPhoneNumber'].")";
+$sql = "INSERT INTO notifications (patient_id, contact_id, stat_id) 
+		VALUES (".$_GET['patient_id'].", ".$_GET['contact_id'].", ".$_GET['stat_id'].")";
 
 if ($con->query($sql) == TRUE) {
     echo "New record created successfully";

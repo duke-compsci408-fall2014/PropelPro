@@ -11,9 +11,9 @@ if (mysqli_connect_errno())
 
 
 $sql = "UPDATE notifications
-		SET recipientPhoneNumber = ".$_GET['recipientPhoneNumber']." 
+		SET contact_id = ".$_GET['contact_id']." 
 		WHERE patient_id = ".$_GET['patient_id']. 
-		"AND recipientName = ".$_GET['recipientName'];
+		"AND stat_id= ".$_GET['stat_id'];
 
 
 if ($con->query($sql) == TRUE) {

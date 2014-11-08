@@ -34,7 +34,7 @@ if ($result = mysqli_query($con, $sql))
 
     // Finally, encode the array to JSON and output the results
     if(empty($resultArray)){
-        echo "Unknown Device"
+        die('Invalid query, Query is empty');
     }else{
         echo json_encode($resultArray);
     }
