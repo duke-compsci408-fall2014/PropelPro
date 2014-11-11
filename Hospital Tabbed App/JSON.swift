@@ -10,7 +10,7 @@ import Foundation
 
 /*
 Note: input string is a shallow json representation like this:
-{ "abc":"12", "def": "7031234567"}
+{ "abc":"12","def": "7031234567"}
 Also note: all keys and values are surrounded by double quotes
 */
 

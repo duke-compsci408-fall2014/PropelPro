@@ -17,6 +17,7 @@
 		82512A9619D9B84900454864 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82512A9419D9B84900454864 /* LaunchScreen.xib */; };
 		82512AA219D9B84900454864 /* Hospital_Tabbed_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82512AA119D9B84900454864 /* Hospital_Tabbed_AppTests.swift */; };
 		82512AB019D9ED5F00454864 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82512AAF19D9ED5F00454864 /* HomeViewController.swift */; };
+		828463041A12878200090962 /* GlobalHealthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828463031A12878200090962 /* GlobalHealthStore.swift */; };
 		82B787B61A0A8BA900E03B78 /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B787B51A0A8BA900E03B78 /* ContactsVC.swift */; };
 		82B787B81A0A8BD000E03B78 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B787B71A0A8BD000E03B78 /* Contact.swift */; };
 		82B787BA1A0A8D5A00E03B78 /* AddContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B787B91A0A8D5A00E03B78 /* AddContactController.swift */; };
@@ -50,6 +51,7 @@
 		82512AA019D9B84900454864 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82512AA119D9B84900454864 /* Hospital_Tabbed_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hospital_Tabbed_AppTests.swift; sourceTree = "<group>"; };
 		82512AAF19D9ED5F00454864 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		828463031A12878200090962 /* GlobalHealthStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalHealthStore.swift; sourceTree = "<group>"; };
 		82B787B51A0A8BA900E03B78 /* ContactsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsVC.swift; sourceTree = "<group>"; };
 		82B787B71A0A8BD000E03B78 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		82B787B91A0A8D5A00E03B78 /* AddContactController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				82512A8919D9B84900454864 /* AppDelegate.swift */,
 				82512AAF19D9ED5F00454864 /* HomeViewController.swift */,
 				82D39D501A07F20C006B35EC /* JSON.swift */,
+				828463031A12878200090962 /* GlobalHealthStore.swift */,
 				8235D3981A082BC1003789BC /* StringHelper.swift */,
 				8235D3941A07F509003789BC /* JSONArray.swift */,
 				82D39D4C1A07E1D5006B35EC /* DoctorsVC.swift */,
@@ -260,6 +263,7 @@
 				8235D3991A082BC1003789BC /* StringHelper.swift in Sources */,
 				82ED73D11A01C1FD001CF2C9 /* AddPhysicianController.swift in Sources */,
 				82D39D511A07F20C006B35EC /* JSON.swift in Sources */,
+				828463041A12878200090962 /* GlobalHealthStore.swift in Sources */,
 				82B787BA1A0A8D5A00E03B78 /* AddContactController.swift in Sources */,
 				82B787B81A0A8BD000E03B78 /* Contact.swift in Sources */,
 				82D39D4D1A07E1D5006B35EC /* DoctorsVC.swift in Sources */,

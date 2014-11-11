@@ -15,30 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var store : HKHealthStore!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        /*
-        // Example: Register for background notifications
-        let sampleType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount);
-        let query = HKObserverQuery(sampleType: sampleType, predicate: nil) {
-            query, completionHandler, error in
-            if error != nil {
-                // Perform Proper Error Handling Here...
-                println("*** An error occured while setting up the stepCount observer." +
-                    (error.localizedDescription) + "***");
-                abort();
-            }
-            var description : String = query.debugDescription;
-            // Take whatever steps are necessary to update your app's data and UI
-            // This may involve executing other queries
-            // TODO: check if the changed data is in bounds
-        }
-        var healthStore : HKHealthStore = HKHealthStore();
-        healthStore.executeQuery(query);
-        */
-        
+        store = GlobalHealthStore.getStore()
         
         return true
     }
