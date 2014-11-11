@@ -10,36 +10,15 @@ if (mysqli_connect_errno())
 }
 
 $sql = "SELECT ".$_GET['attribute'] ." 
-        FROM notifications";
+        FROM patients_contacts";
 
 if($_GET['patient_id']){
-    $sql = "SELECT ".$_GET['attribute'] ." 
-        FROM notifications
-        WHERE patient_id = ".$_GET['patient_id'];
+    $sql = $sql . " WHERE patient_id = ".$_GET['patient_id'];
 }
 
-if($_GET['patient_id'] && $_GET['contact_id']){
-    $sql = "SELECT ".$_GET['attribute'] ." 
-        FROM notifications
-        WHERE patient_id = ".$_GET['patient_id'] . " AND
-        contact_id = " . $_GET['contact_id'];
+if($_GET['contact_id']){
+    $sql = $sql . " WHERE contact_id = ".$_GET['contact_id'];
 }
-
-if($_GET['patient_id'] && $_GET['contact_id'] && $_GET['stat_id']){
-    $sql = "SELECT ".$_GET['attribute'] ." 
-        FROM notifications
-        WHERE patient_id = ".$_GET['patient_id'] . " AND
-        contact_id = " . $_GET['contact_id'] . "AND 
-        stat_id = ". $_GET['stat_id'];
-}
-
-if($_GET['patient_id'] && $_GET['stat_id']){
-    $sql = "SELECT ".$_GET['attribute'] ." 
-        FROM notifications
-        WHERE patient_id = ".$_GET['patient_id'] . " AND
-        stat_id = ". $_GET['stat_id'];
-}
-
 
 // Check if there are results
 if ($result = mysqli_query($con, $sql))

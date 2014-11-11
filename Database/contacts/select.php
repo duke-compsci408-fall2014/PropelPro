@@ -10,11 +10,12 @@ if (mysqli_connect_errno())
 }
 
 $sql = "SELECT ".$_GET['attribute'] ." 
-        FROM patients";
-
-if($_GET['patient_id']){
-    $sql = $sql . " WHERE patient_id = ".$_GET['patient_id'];
-}
+        FROM contacts 
+        WHERE contact_id 
+        IN (
+            SELECT contact_id 
+            FROM patients_contacts 
+            WHERE patient_id = ".$_GET['patient_id']." )";
 
 // Check if there are results
 if ($result = mysqli_query($con, $sql))
@@ -33,11 +34,7 @@ if ($result = mysqli_query($con, $sql))
     }
 
     // Finally, encode the array to JSON and output the results
-    if(empty($resultArray)){
-        die('Invalid query, Query is empty');
-    }else{
-        echo json_encode($resultArray);
-    }
+    echo json_encode($resultArray);
 }
 
 // Close connections
