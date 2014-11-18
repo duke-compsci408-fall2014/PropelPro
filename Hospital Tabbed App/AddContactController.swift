@@ -84,15 +84,16 @@ class AddContactController : UIViewController {
         
         println(nameStr)
         println(phoneNumberStr)
+        var repeat = "";
         for i in statIdSelections {
             if( i != -1){
         
-                var url = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/contacts/insert.php?patient_id='\(patientId)'&contactName='\(nameStr)'&contactPhoneNumber='\(phoneNumberStr)'";
+                var url = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/contacts/insert.php?patient_id='\(patientId)'&contactName='\(nameStr)'&contactPhoneNumber='\(phoneNumberStr)'&stat_id=\(statIds[i])&repeat=\(repeat)";
                 println("dirty url:" + url);
                 url = StringHelper.cleanURLString(url)
                 println("clean url:" + url);
                 makeHTTPRequest(url)
-                
+                repeat = "true"
             }
         }
     }
