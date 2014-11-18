@@ -43,10 +43,10 @@ class GlobalHealthStore {
     class func storeRequestAuthorizedHandler(success : Bool, error : NSError!) {
         if success {
             println("successfully authorized")
-            printCharacteristics()
-            //            testHeartRateQuery()
-            testHeartRateObserverQuery()
-            //            testBackgroundDelivery()
+//            printCharacteristics()
+//            testHeartRateQuery()
+//            testHeartRateObserverQuery()
+//            testBackgroundDelivery()
         }
     }
     
