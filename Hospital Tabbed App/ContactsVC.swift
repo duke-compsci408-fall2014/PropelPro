@@ -27,7 +27,7 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
     func populateContacts() {
         var deviceId = UIDevice.currentDevice().identifierForVendor.UUIDString;
         println("Device ID: \(deviceId)");
-        var urlStr = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/notifications/select.php?attribute=*&patient_id='\(deviceId)'"
+        var urlStr = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/contacts/select.php?attribute=*&patient_id='\(deviceId)'"
         var url = NSURL(string: urlStr)
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
@@ -42,7 +42,7 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
                 for obj : JSON in jsonArray.getObjects() {
                     var map : [String : String] = obj.getMap()
                     // TODO: update when recipient ID is available
-                    var contact = Contact(id: "TODO", name: map["recipientName"]!, number: map["recipientPhoneNumber"]!)
+                    var contact = Contact(id: map["contact_id"]!, name: map["contactName"]!, number: map["contactPhoneNumber"]!)
                     self.items.append(contact)
                 }
                 dispatch_async(dispatch_get_main_queue(), {

@@ -28,7 +28,7 @@ class AddContactController : UIViewController {
         println(nameStr)
         println(phoneNumberStr)
         
-        var url = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/notifications/insert.php?patient_id='\(patientId)'&recipientName='\(nameStr)'&recipientPhoneNumber='\(phoneNumberStr)'";
+        var url = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/contacts/insert.php?patient_id='\(patientId)'&contactName='\(nameStr)'&contactPhoneNumber='\(phoneNumberStr)'";
         println("dirty url:" + url);
         url = StringHelper.cleanURLString(url)
         println("clean url:" + url);
