@@ -28,6 +28,19 @@ class GlobalHealthStore {
             }
             return ClassVars.store
         }
+        
+        static var typeToUnitMap : [String : String]! = nil
+        static func getTypeToUnitMap() -> [String : String] {
+            if (ClassVars.typeToUnitMap == nil) {
+                ClassVars.typeToUnitMap = [
+                    HKQuantityTypeIdentifierBodyMass : "lb",
+                    HKQuantityTypeIdentifierStepCount : "count",
+                    HKQuantityTypeIdentifierHeartRate : "count/min",
+                    HKQuantityTypeIdentifierOxygenSaturation : "%"
+                ]
+            }
+            return ClassVars.typeToUnitMap
+        }
     }
     
     class func getStore() -> HKHealthStore {
@@ -40,15 +53,116 @@ class GlobalHealthStore {
         getStore().requestAuthorizationToShareTypes(shareSet, readTypes: readSet, completion: storeRequestAuthorizedHandler)
     }
     
+    // This function subscribes to events for all the data types we care about
     class func storeRequestAuthorizedHandler(success : Bool, error : NSError!) {
         if success {
             println("successfully authorized")
+            placeAllObserverQueriesAndBackgroundDeliveries()
 //            printCharacteristics()
 //            testHeartRateQuery()
 //            testHeartRateObserverQuery()
 //            testBackgroundDelivery()
         }
     }
+    
+    class func placeAllObserverQueriesAndBackgroundDeliveries() {
+        var endKey : NSString = HKSampleSortIdentifierEndDate
+        var endDate : NSSortDescriptor = NSSortDescriptor(key: endKey, ascending: false)
+        var types : NSSet = getTypesToReadSet()
+        
+        for type in types {
+            var observerQuery : HKObserverQuery = HKObserverQuery(sampleType: type as HKQuantityType, predicate: nil, updateHandler: observerQueryHandler)
+            getStore().executeQuery(observerQuery)
+            
+            var freq : HKUpdateFrequency = HKUpdateFrequency.Immediate
+            // special case: step count may not have immediate frequency
+            if (type.identifier == HKQuantityTypeIdentifierStepCount) {
+                freq = HKUpdateFrequency.Hourly
+            }
+            getStore().enableBackgroundDeliveryForType(type as HKQuantityType, frequency: freq, withCompletion: backgroundDeliveryEnabled)
+        }
+    }
+    
+    class func observerQueryHandler(query: HKObserverQuery!, completionHandler: HKObserverQueryCompletionHandler!, error: NSError!) {
+        println("new data available for \(query.sampleType.identifier)")
+        
+        // execute query for this data type
+        // TODO: should specify the type in the call
+        var type : HKQuantityType = HKQuantityType.quantityTypeForIdentifier(query.sampleType.identifier)
+        placeQuery(type)
+        
+        completionHandler()
+    }
+    
+    class func placeQuery(type: HKQuantityType) {
+        var endKey : NSString = HKSampleSortIdentifierEndDate
+        var endDate : NSSortDescriptor = NSSortDescriptor(key: endKey, ascending: false)
+        var query : HKSampleQuery = HKSampleQuery(sampleType: type, predicate: nil, limit: 1, sortDescriptors: [endDate], resultsHandler: queryHandler) // limit of 0 means no limit
+        getStore().executeQuery(query)
+    }
+    
+    class func queryHandler(query: HKSampleQuery!, results: [AnyObject]!, error: NSError!) {
+        if (error != nil) {
+            println(error.localizedDescription)
+            return
+        }
+        var typeIdentifier : String = query.sampleType.identifier
+        println("\(results.count) results returned of type \(typeIdentifier).")
+        
+        for result in results as [HKQuantitySample]! {
+            var unitString = ClassVars.getTypeToUnitMap()[typeIdentifier]
+            var unit : HKUnit = HKUnit(fromString: unitString)
+            var value : Double = result.quantity.doubleValueForUnit(unit)
+            println("Quantity: \(value) \(unitString)")
+        }
+    }
+    
+    class func backgroundDeliveryEnabled(success : Bool, error: NSError!) {
+        if (error != nil) {
+            println(error.localizedDescription)
+            return
+        }
+        println("background delivery enabled! \(success)")
+    }
+    
+    // This is an abridged list of types that can be read. Full list is here: https://developer.apple.com/library/ios/documentation/HealthKit/Reference/HealthKit_Constants/index.html#//apple_ref/doc/constant_group/Body_Measurements
+    class func getTypesToReadSet() -> NSSet {
+        var typesToRead : [HKObjectType] = []
+        
+//        // Gender
+//        typesToRead.append(HKCharacteristicType.characteristicTypeForIdentifier(HKCharacteristicTypeIdentifierBiologicalSex))
+//        
+//        // Blood type
+//        typesToRead.append(HKCharacteristicType.characteristicTypeForIdentifier(HKCharacteristicTypeIdentifierBloodType))
+//        
+//        // Date of birth
+//        typesToRead.append(HKCharacteristicType.characteristicTypeForIdentifier(HKCharacteristicTypeIdentifierDateOfBirth))
+        
+        // Body mass
+        typesToRead.append(HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMass))
+        
+        // Heart rate
+        typesToRead.append(HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate))
+
+        // Oxygen level
+        typesToRead.append(HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierOxygenSaturation))
+        
+        // Step count
+        typesToRead.append(HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount))
+
+        var readSet  : NSSet = NSSet(array: typesToRead)
+        return readSet
+    }
+
+    
+    
+    
+    
+    /*
+        Example HK functions below:
+    */
+    
+    /*
     
     class func printCharacteristics() {
         var sex : HKBiologicalSexObject = getStore().biologicalSexWithError(nil)
@@ -67,7 +181,7 @@ class GlobalHealthStore {
         var query : HKSampleQuery = HKSampleQuery(sampleType: hrType, predicate: nil, limit: 1, sortDescriptors: [endDate], resultsHandler: queryHandler) // limit of 0 means no limit
         getStore().executeQuery(query)
     }
-    
+
     class func testHeartRateObserverQuery() {
         var hrType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
         var endKey : NSString = HKSampleSortIdentifierEndDate
@@ -95,7 +209,8 @@ class GlobalHealthStore {
     class func observerQueryHandler(query: HKObserverQuery!, completionHandler: HKObserverQueryCompletionHandler!, error: NSError!) {
         println("new data available for \(query.sampleType.identifier)")
         
-        // execute query for this data type TODO: should specify the type in the call
+        // execute query for this data type
+        // TODO: should specify the type in the call
         testHeartRateQuery()
         
         completionHandler()
@@ -105,36 +220,5 @@ class GlobalHealthStore {
         var hrType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
         getStore().enableBackgroundDeliveryForType(hrType, frequency: HKUpdateFrequency.Immediate, withCompletion: backgroundDeliveryEnabled)
     }
-    
-    class func backgroundDeliveryEnabled(success : Bool, error: NSError!) {
-        if (error != nil) {
-            println(error.localizedDescription)
-            return
-        }
-        println("background delivery enabled! \(success)")
-    }
-    
-    // This is an abridged list of types that can be read. Full list is here: https://developer.apple.com/library/ios/documentation/HealthKit/Reference/HealthKit_Constants/index.html#//apple_ref/doc/constant_group/Body_Measurements
-    class func getTypesToReadSet() -> NSSet {
-        var typesToRead : [HKObjectType] = []
-        
-        // Gender
-        typesToRead.append(HKCharacteristicType.characteristicTypeForIdentifier(HKCharacteristicTypeIdentifierBiologicalSex))
-        
-        // Blood type
-        typesToRead.append(HKCharacteristicType.characteristicTypeForIdentifier(HKCharacteristicTypeIdentifierBloodType))
-        
-        // Date of birth
-        typesToRead.append(HKCharacteristicType.characteristicTypeForIdentifier(HKCharacteristicTypeIdentifierDateOfBirth))
-        
-        // Body mass
-        typesToRead.append(HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMass))
-        
-        // Heart rate
-        typesToRead.append(HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate))
-        
-        var readSet  : NSSet = NSSet(array: typesToRead)
-        return readSet
-    }
-    
+    */
 }

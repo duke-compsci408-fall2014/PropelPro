@@ -106,9 +106,9 @@
 			children = (
 				82D9E60719EA2F6C0077BE29 /* Hospital Tabbed App.entitlements */,
 				82512A8919D9B84900454864 /* AppDelegate.swift */,
+				828463031A12878200090962 /* GlobalHealthStore.swift */,
 				82D39D501A07F20C006B35EC /* JSON.swift */,
 				8235D3941A07F509003789BC /* JSONArray.swift */,
-				828463031A12878200090962 /* GlobalHealthStore.swift */,
 				82A91C871A1AA90000B3A8AD /* HomeVC.swift */,
 				8235D3981A082BC1003789BC /* StringHelper.swift */,
 				82D39D4C1A07E1D5006B35EC /* DoctorsVC.swift */,
