@@ -36,6 +36,9 @@ class Settings : UIViewController, UITableViewDelegate {
     
     //device Id
     let patient_id = UIDevice.currentDevice().identifierForVendor.UUIDString;
+    
+    
+    
 
     
     @IBAction func OxiSave(sender: AnyObject) {
