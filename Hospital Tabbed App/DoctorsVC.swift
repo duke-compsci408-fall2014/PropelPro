@@ -52,6 +52,23 @@ class DoctorsVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
         task.resume()
     }
     
+    //deleting
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            var itemRemove : Doctor = self.items[indexPath.row]
+            self.items.removeAtIndex(indexPath.row)
+            
+            var urlStr = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/doctors/delete.php?doctor_id='\(itemRemove.doctorId)'";
+            println(urlStr);
+            
+            var url = StringHelper.cleanURLString(urlStr);
+            
+            self.makeHTTPRequest(url);
+            
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+        
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.items.count;
@@ -68,6 +85,18 @@ class DoctorsVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         println("You selected cell #\(indexPath.row)!")
+    }
+    
+    func makeHTTPRequest(urlStringWithParameters : String) {
+        let url = NSURL(string: urlStringWithParameters)
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+            if error != nil {
+                println("error! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
+            } else {
+                println("success! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
+            }
+        }
+        task.resume()
     }
 }
 

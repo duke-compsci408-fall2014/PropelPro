@@ -68,6 +68,8 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     
+    
+    //deleting
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             var itemRemove : Contact = self.items[indexPath.row]
@@ -83,15 +85,39 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
         
-        
     }
+    
+    
+    //testing table row expansion
+    var selectedRowIndex: NSIndexPath = NSIndexPath(forRow: -1, inSection: 0)
+    var cellTapped = false
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         println("You selected cell #\(indexPath.row)!")
-       
-
+        selectedRowIndex = indexPath
+        println("beginning updates")
+        tableView.beginUpdates()
+        println("beginning ending updates")
+        tableView.endUpdates()
     }
     
+    func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+        if indexPath.row == selectedRowIndex.row {
+            if cellTapped == false {
+                cellTapped = true
+                println(indexPath.row)
+                
+                return 150
+            } else {
+                cellTapped = false
+                return 45
+            }
+        }
+        return 45
+    }
+    
+    
+    //making http requests
     func makeHTTPRequest(urlStringWithParameters : String) {
         let url = NSURL(string: urlStringWithParameters)
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
