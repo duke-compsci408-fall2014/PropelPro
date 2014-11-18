@@ -35,7 +35,6 @@ class HomeVC : UIViewController {
             self.welcomeLabel.text = "Welcome, \(ClassVars.getName())!";
             self.welcomeLabel.hidden = false;
         }
-        ClassVars.setName("chin")
         
     }
     
