@@ -34,7 +34,7 @@ if ($result = mysqli_query($con, $sql))
 
     // Finally, encode the array to JSON and output the results
     if(empty($resultArray)){
-        die('Invalid query, Query is empty');
+       echo http_response_code(404);
     }else{
         echo json_encode($resultArray);
     }
