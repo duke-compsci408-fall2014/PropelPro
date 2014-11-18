@@ -73,10 +73,6 @@ class Settings : UIViewController, UITableViewDelegate {
         self.save(patient_id,stat_id: weightId,lowerBound: lowbound,upperBound: highbound)
     }
     
-    
-    
-    
-    
     func save(patient_id:String,stat_id:String,lowerBound:String,upperBound:String){
         println(patient_id)
         println(stat_id)
