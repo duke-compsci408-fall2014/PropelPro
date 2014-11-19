@@ -148,6 +148,10 @@ class Settings : UIViewController, UITableViewDelegate {
         self.makeHTTPRequest(url);
 
     }
+    
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true)
+    }
 
     func makeHTTPRequest(urlStringWithParameters : String) {
         let url = NSURL(string: urlStringWithParameters)

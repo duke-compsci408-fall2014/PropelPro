@@ -27,6 +27,10 @@ class EditDoctorVC : UIViewController {
         addressField.text = self.doctorAddress
     }
     
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true)
+    }
+    
     @IBAction func saveAction(sender: AnyObject) {
         var doctorId : String = self.doctorId
         var nameStr : String = nameField.text;

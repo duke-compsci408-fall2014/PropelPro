@@ -25,6 +25,10 @@ class HomeVC : UIViewController {
         super.viewDidAppear(animated);
     }
     
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true)
+    }
+    
     func fetchName() {
         println("fetching name")
         var urlStr = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/patients/select.php?attribute=*&patient_id='\(deviceId)'"
