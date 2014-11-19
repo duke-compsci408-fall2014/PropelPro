@@ -66,7 +66,6 @@ class HomeVC : UIViewController {
                     var name : String = patient.getMap()["patientName"]!
                     ClassVars.setName(name)
                     println("Name: \(ClassVars.getName())")
-                    self.viewDidLoad()
                 }
             }
         }

@@ -41,12 +41,66 @@ class Settings : UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-}
+        populateSettings()
+    }
 
     func populateSettings() {
-        
-}
+        var urlStr = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/bounds/select.php?attribute=*&patient_id='\(patient_id)'"
+        let url = NSURL(string: urlStr)
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+            if error != nil {
+                println("error! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
+            } else {
+                println("success!")
+                var output = NSString(data: data, encoding: NSUTF8StringEncoding) as String
+                var arr : [JSON] = JSONArray(str: output).getObjects()
+                for object in arr {
+                    var map : [String : String] = object.getMap()
+                    var statId = map["stat_id"]
+                    var lowBound = map["statLowerBound"]
+                    var upBound  = map["statUpperBound"]
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.getLowFieldForStat(statId!).text = lowBound
+                        self.getUpFieldForStat(statId!).text = upBound                        
+                    });
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    func getLowFieldForStat(statId: String) -> UITextField! {
+        if statId == oxiId {
+            return oxiLow
+        }
+        if statId == pedoId {
+            return pedoLow
+        }
+        if statId == hrId {
+            return hrLow
+        }
+        if statId == weightId {
+            return bmLow
+        }
+        return nil // This should not happen
+    }
+    
+    func getUpFieldForStat(statId: String) -> UITextField! {
+        if statId == oxiId {
+            return oxiHigh
+        }
+        if statId == pedoId {
+            return pedoHigh
+        }
+        if statId == hrId {
+            return hrHigh
+        }
+        if statId == weightId {
+            return bmHigh
+        }
+        return nil // This should not happen
+    }
+
 
     
     @IBAction func OxiSave(sender: AnyObject) {
