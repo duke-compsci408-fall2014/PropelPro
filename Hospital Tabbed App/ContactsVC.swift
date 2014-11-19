@@ -81,6 +81,8 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
             println("Edit•ACTION");
             
             //need to write edit action
+
+
             
             
         });

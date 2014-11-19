@@ -24,6 +24,7 @@
 		82D39D4D1A07E1D5006B35EC /* DoctorsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D39D4C1A07E1D5006B35EC /* DoctorsVC.swift */; };
 		82D39D511A07F20C006B35EC /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D39D501A07F20C006B35EC /* JSON.swift */; };
 		82ED73D11A01C1FD001CF2C9 /* AddPhysicianController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ED73D01A01C1FD001CF2C9 /* AddPhysicianController.swift */; };
+		B654B3A71A1C72AB00C6882E /* EditContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B654B3A61A1C72AB00C6882E /* EditContactController.swift */; };
 		B69FFF771A1AA68500CE0C78 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69FFF761A1AA68500CE0C78 /* Settings.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		82D39D501A07F20C006B35EC /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		82D9E60719EA2F6C0077BE29 /* Hospital Tabbed App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Hospital Tabbed App.entitlements"; sourceTree = "<group>"; };
 		82ED73D01A01C1FD001CF2C9 /* AddPhysicianController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhysicianController.swift; sourceTree = "<group>"; };
+		B654B3A61A1C72AB00C6882E /* EditContactController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditContactController.swift; sourceTree = "<group>"; };
 		B69FFF761A1AA68500CE0C78 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,6 +124,7 @@
 				82512A9419D9B84900454864 /* LaunchScreen.xib */,
 				82512A8719D9B84900454864 /* Supporting Files */,
 				B69FFF761A1AA68500CE0C78 /* Settings.swift */,
+				B654B3A61A1C72AB00C6882E /* EditContactController.swift */,
 			);
 			path = "Hospital Tabbed App";
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B654B3A71A1C72AB00C6882E /* EditContactController.swift in Sources */,
 				82512A8A19D9B84900454864 /* AppDelegate.swift in Sources */,
 				B69FFF771A1AA68500CE0C78 /* Settings.swift in Sources */,
 				8235D3971A082552003789BC /* Doctor.swift in Sources */,
