@@ -20,6 +20,6 @@ class Contact {
     }
     
     func toString() -> String {
-        return "\(self.contactId): \(self.contactName)"
+        return "\(self.contactName): \(self.contactPhoneNumber)"
     }
 }
