@@ -22,6 +22,6 @@ class Doctor {
     }
     
     func toString() -> String {
-        return "\(self.doctorId): \(self.doctorName)"
+        return "\(self.doctorName): \(self.doctorPhoneNumber)"
     }
 }

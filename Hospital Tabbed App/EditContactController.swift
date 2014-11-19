@@ -1,4 +1,4 @@
-//
+
 //  AddContactController.swift
 //  Hospital Tabbed App
 //
@@ -31,26 +31,26 @@ class EditContactController : UIViewController {
         
         //NOTE: Change the URL
 //        var urlStr = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/contacts/select.php?attribute=*&patient_id='\(deviceId)'"
-        var url = NSURL(string: urlStr)
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response,error) in
-            if error != nil{
-                println("error!\n\(NSString(data:data,encoding: NSUTF8StringEncoding))")
-            } else {
-                println("success!")
-                var output = NSString(data:data,encoding:NSUTF8StringEncoding) as String
-                println(output)
-                var jsonArray : JSONArray = JSONArray(str:output)
-                self.items=[]
-                for obj : JSON in JSONArray.getObjects(){
-                    var map :[String : String] = obj.getMap()
-                    var contact = Contact(id:map["contact_id"]!, name: map["contactName"]!,number:map["contactPhoneNumber"])
-                    self.items.append(contact)
-                }
-                
-            }
-        
-        }
-        
+//        var url = NSURL(string: urlStr)
+//        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response,error) in
+//            if error != nil{
+//                println("error!\n\(NSString(data:data,encoding: NSUTF8StringEncoding))")
+//            } else {
+//                println("success!")
+//                var output = NSString(data:data,encoding:NSUTF8StringEncoding) as String
+//                println(output)
+//                var jsonArray : JSONArray = JSONArray(str:output)
+//                self.items=[]
+//                for obj : JSON in JSONArray.getObjects(){
+//                    var map :[String : String] = obj.getMap()
+//                    var contact = Contact(id:map["contact_id"]!, name: map["contactName"]!,number:map["contactPhoneNumber"])
+//                    self.items.append(contact)
+//                }
+//                
+//            }
+//        
+//        }
+//        
     }
     
     

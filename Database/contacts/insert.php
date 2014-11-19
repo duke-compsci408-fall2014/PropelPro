@@ -63,14 +63,15 @@ if ($con->query($sql) == TRUE) {
 		  if ($con->query($sqlUpdate)) {
    	 	      	echo "New record in patients_contacts created successfully\n";
                 //updating notifications
-                $sqlUpdate = "INSERT INTO notifications(patient_id,contact_id,stat_id)
+                if($_GET['stat_id']){
+                    $sqlUpdate = "INSERT INTO notifications(patient_id,contact_id,stat_id)
                                VALUES(".$patientID.", ". $conId .", ".$_GET['stat_id'].")";
-                if($con->query($sqlUpdate)){
-                    echo "New record in notifications created successfully\n";
-                }else{
-                    echo "Error: " . $sqlUpdate . "<br>" . $con->error ."\n";
+                    if($con->query($sqlUpdate)){
+                       echo "New record in notifications created successfully\n";
+                    }else{
+                      echo "Error: " . $sqlUpdate . "<br>" . $con->error ."\n";
+                    }
                 }
-
 		  } else {
     		  echo "Error: " . $sqlUpdate . "<br>" . $con->error ."\n";
     		  //remove since insert in to patient_contact failes
