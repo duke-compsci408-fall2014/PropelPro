@@ -6,7 +6,6 @@ class EditContactController : UIViewController {
     @IBOutlet weak var contactName: UITextField!
     @IBOutlet weak var contactNumber: UITextField!
     @IBOutlet weak var saveButton: UIButton!
-  
     
     let patientID = UIDevice.currentDevice().identifierForVendor.UUIDString;
     var name:String!;
@@ -25,6 +24,9 @@ class EditContactController : UIViewController {
         contactNumber.text = self.number
     }
     
+    @IBAction func saveAction(sender: AnyObject) {
+        // Do the saving
+    }
     
     func makeHTTPRequest(urlStringWithParameters : String) {
         let url = NSURL(string: urlStringWithParameters)
