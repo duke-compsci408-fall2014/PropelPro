@@ -131,11 +131,11 @@ class GlobalHealthStore {
             var value : Double = result.quantity.doubleValueForUnit(unit)
             println("Quantity: \(value) \(unitString)")
             
-            checkBoundsForTypeId(value, typeId: typeIdentifier);
+            fetchBoundsForTypeId(value, typeId: typeIdentifier);
         }
     }
     
-    class func checkBoundsForTypeId(value: Double, typeId : String) {
+    class func fetchBoundsForTypeId(value: Double, typeId : String) {
         var statId = ClassVars.getTypeIdToStatIdMap()[typeId]
         var urlStr = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/bounds/select.php?attribute=*&patient_id='\(ClassVars.deviceId)'&stat_id='\(statId!)'"
         println(urlStr)
@@ -156,9 +156,14 @@ class GlobalHealthStore {
                 println(value)
                 println(lowBound)
                 println(upBound)
+                
             }
         }
         task.resume()
+    }
+    
+    class func actInResponseToBounds(value: Double, low: Double, up: Double) {
+        
     }
     
     class func backgroundDeliveryEnabled(success : Bool, error: NSError!) {
