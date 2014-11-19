@@ -38,7 +38,15 @@ class Settings : UIViewController, UITableViewDelegate {
     let patient_id = UIDevice.currentDevice().identifierForVendor.UUIDString;
     
     
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+}
+
+    func populateSettings() {
+        
+}
 
     
     @IBAction func OxiSave(sender: AnyObject) {
