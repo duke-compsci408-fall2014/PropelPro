@@ -28,6 +28,10 @@ class EditContactController : UIViewController {
         // Do the saving
     }
     
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true)
+    }
+    
     func makeHTTPRequest(urlStringWithParameters : String) {
         let url = NSURL(string: urlStringWithParameters)
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in

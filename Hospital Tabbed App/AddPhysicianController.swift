@@ -20,7 +20,11 @@ class AddPhysicianController : UIViewController {
         
         saveButton.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
     }
-        
+    
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true)
+    }
+    
     func buttonAction(sender:UIButton!)
     {
         var patientId = UIDevice.currentDevice().identifierForVendor.UUIDString;

@@ -19,6 +19,10 @@ class DoctorsVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true)
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated);
         self.populateDoctors()
