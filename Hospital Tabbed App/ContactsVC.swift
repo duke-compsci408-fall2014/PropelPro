@@ -79,8 +79,7 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
             println("Edit•ACTION");
             
             //need to write edit action
-
-
+            self.performSegueWithIdentifier("editContact", sender: indexPath)
             
             
         });
@@ -106,37 +105,27 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
         
         return [deleteRowAction, editRowAction];
     }
-
     
+    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+        println("You selected cell #\(indexPath.row)!")
+    }
     
-    //testing table row expansion
-//    var selectedRowIndex: NSIndexPath = NSIndexPath(forRow: -1, inSection: 0)
-//    var cellTapped = false
-//    
-//    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-//        println("You selected cell #\(indexPath.row)!")
-//        selectedRowIndex = indexPath
-//        println("beginning updates")
-//        tableView.beginUpdates()
-//        println("beginning ending updates")
-//        tableView.endUpdates()
-//    }
-    
-//    func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-//        if indexPath.row == selectedRowIndex.row {
-//            if cellTapped == false {
-//                cellTapped = true
-//                println(indexPath.row)
-//                
-//                return 150
-//            } else {
-//                cellTapped = false
-//                return 45
-//            }
+    // This populates the edit fields before they are presented
+    // sender is the index path of the cell
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+//        if segue.identifier == "editContact" {
+//            println("preparing for edit contact segue")
+//            let vc = segue.destinationViewController as EditContactController
+//            var indexPath : NSIndexPath = sender as NSIndexPath//self.tableView.indexPathForSelectedRow()!
+//            var contact : Contact = self.items[indexPath.row]
+//            //edit the bottom to pertain to contacts
+//            vc.contactID = contact.contactId
+//            vc.name = contact.contactName
+//            vc.number = contact.contactPhoneNumber
+//
 //        }
-//        return 45
-//    }
-    
+    }
+
     
     //making http requests
     func makeHTTPRequest(urlStringWithParameters : String) {
