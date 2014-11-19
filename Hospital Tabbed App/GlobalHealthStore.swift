@@ -8,6 +8,7 @@
 
 import Foundation
 import HealthKit
+import UIKit
 
 // Swift doesn't support class variables yet
 // Hack: make a private struct that stores a static variable, and then provide
@@ -15,6 +16,8 @@ import HealthKit
 
 class GlobalHealthStore {
     private struct ClassVars {
+        static var deviceId = UIDevice.currentDevice().identifierForVendor.UUIDString;
+        
         static var store : HKHealthStore! = nil;
         static func getStore() -> HKHealthStore {
             if (ClassVars.store == nil) {
@@ -41,7 +44,21 @@ class GlobalHealthStore {
             }
             return ClassVars.typeToUnitMap
         }
+
+        static var typeIdToStatId : [String : String]! = nil
+        static func getTypeIdToStatIdMap() -> [String : String] {
+            if (ClassVars.typeIdToStatId == nil) {
+                ClassVars.typeIdToStatId = [
+                    HKQuantityTypeIdentifierBodyMass : "1",
+                    HKQuantityTypeIdentifierStepCount : "7",
+                    HKQuantityTypeIdentifierHeartRate : "9",
+                    HKQuantityTypeIdentifierOxygenSaturation : "6"
+                ]
+            }
+            return ClassVars.typeIdToStatId
+        }
     }
+    
     
     class func getStore() -> HKHealthStore {
         return ClassVars.getStore()
@@ -87,7 +104,6 @@ class GlobalHealthStore {
         println("new data available for \(query.sampleType.identifier)")
         
         // execute query for this data type
-        // TODO: should specify the type in the call
         var type : HKQuantityType = HKQuantityType.quantityTypeForIdentifier(query.sampleType.identifier)
         placeQuery(type)
         
@@ -114,7 +130,35 @@ class GlobalHealthStore {
             var unit : HKUnit = HKUnit(fromString: unitString)
             var value : Double = result.quantity.doubleValueForUnit(unit)
             println("Quantity: \(value) \(unitString)")
+            
+            checkBoundsForTypeId(value, typeId: typeIdentifier);
         }
+    }
+    
+    class func checkBoundsForTypeId(value: Double, typeId : String) {
+        var statId = ClassVars.getTypeIdToStatIdMap()[typeId]
+        var urlStr = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/bounds/select.php?attribute=*&patient_id='\(ClassVars.deviceId)'&stat_id='\(statId!)'"
+        println(urlStr)
+        let url = NSURL(string: urlStr)
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+            if error != nil {
+                println("error! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
+            } else {
+                println("success!")
+                var output = NSString(data: data, encoding: NSUTF8StringEncoding) as String
+                var object : JSON = JSONArray(str: output).getObjects()[0]
+                var map : [String : String] = object.getMap()
+                var lowBound = map["statLowerBound"]
+                var upBound  = map["statUpperBound"]
+                
+                // TODO: if the value is outside of the bounds, make notification
+                println("value, low, up:")
+                println(value)
+                println(lowBound)
+                println(upBound)
+            }
+        }
+        task.resume()
     }
     
     class func backgroundDeliveryEnabled(success : Bool, error: NSError!) {
