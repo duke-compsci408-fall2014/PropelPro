@@ -113,17 +113,17 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
     // This populates the edit fields before they are presented
     // sender is the index path of the cell
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-//        if segue.identifier == "editContact" {
-//            println("preparing for edit contact segue")
-//            let vc = segue.destinationViewController as EditContactController
-//            var indexPath : NSIndexPath = sender as NSIndexPath//self.tableView.indexPathForSelectedRow()!
-//            var contact : Contact = self.items[indexPath.row]
-//            //edit the bottom to pertain to contacts
-//            vc.contactID = contact.contactId
-//            vc.name = contact.contactName
-//            vc.number = contact.contactPhoneNumber
-//
-//        }
+        if segue.identifier == "editContact" {
+            println("preparing for edit contact segue")
+            let vc = segue.destinationViewController as EditContactController
+            var indexPath : NSIndexPath = sender as NSIndexPath//self.tableView.indexPathForSelectedRow()!
+            var contact : Contact = self.items[indexPath.row]
+            //edit the bottom to pertain to contacts
+            vc.contactID = contact.contactId
+            vc.name = contact.contactName
+            vc.number = contact.contactPhoneNumber
+
+        }
     }
 
     

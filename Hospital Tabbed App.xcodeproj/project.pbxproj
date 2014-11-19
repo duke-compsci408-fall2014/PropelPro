@@ -121,13 +121,13 @@
 				82ED73D01A01C1FD001CF2C9 /* AddPhysicianController.swift */,
 				82B787B51A0A8BA900E03B78 /* ContactsVC.swift */,
 				82B787B71A0A8BD000E03B78 /* Contact.swift */,
+				B654B3A61A1C72AB00C6882E /* EditContactController.swift */,
 				82B787B91A0A8D5A00E03B78 /* AddContactController.swift */,
+				B69FFF761A1AA68500CE0C78 /* Settings.swift */,
 				82512A8F19D9B84900454864 /* Main.storyboard */,
 				82512A9219D9B84900454864 /* Images.xcassets */,
 				82512A9419D9B84900454864 /* LaunchScreen.xib */,
 				82512A8719D9B84900454864 /* Supporting Files */,
-				B69FFF761A1AA68500CE0C78 /* Settings.swift */,
-				B654B3A61A1C72AB00C6882E /* EditContactController.swift */,
 			);
 			path = "Hospital Tabbed App";
 			sourceTree = "<group>";
