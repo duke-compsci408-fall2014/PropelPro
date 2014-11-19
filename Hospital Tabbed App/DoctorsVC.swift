@@ -85,6 +85,21 @@ class DoctorsVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         println("You selected cell #\(indexPath.row)!")
+        self.performSegueWithIdentifier("editDoctor", sender: self)
+    }
+    
+    // This populates the edit fields before they are presented
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "editDoctor" {
+            println("preparing for edit doctor segue")
+            let vc = segue.destinationViewController as EditDoctorVC
+            var indexPath : NSIndexPath = self.tableView.indexPathForSelectedRow()!
+            var doc : Doctor = self.items[indexPath.row]
+            vc.doctorId = doc.doctorId
+            vc.doctorName = doc.doctorName
+            vc.doctorPhoneNumber = doc.doctorPhoneNumber
+            vc.doctorAddress = doc.doctorAddress
+        }
     }
     
     func makeHTTPRequest(urlStringWithParameters : String) {

@@ -11,6 +11,7 @@
 		8235D3951A07F509003789BC /* JSONArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8235D3941A07F509003789BC /* JSONArray.swift */; };
 		8235D3971A082552003789BC /* Doctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8235D3961A082552003789BC /* Doctor.swift */; };
 		8235D3991A082BC1003789BC /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8235D3981A082BC1003789BC /* StringHelper.swift */; };
+		824A000F1A1CF15D0056E1D0 /* EditDoctorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824A000E1A1CF15D0056E1D0 /* EditDoctorVC.swift */; };
 		82512A8A19D9B84900454864 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82512A8919D9B84900454864 /* AppDelegate.swift */; };
 		82512A9119D9B84900454864 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82512A8F19D9B84900454864 /* Main.storyboard */; };
 		82512A9319D9B84900454864 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82512A9219D9B84900454864 /* Images.xcassets */; };
@@ -42,6 +43,7 @@
 		8235D3941A07F509003789BC /* JSONArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONArray.swift; sourceTree = "<group>"; };
 		8235D3961A082552003789BC /* Doctor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Doctor.swift; sourceTree = "<group>"; };
 		8235D3981A082BC1003789BC /* StringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
+		824A000E1A1CF15D0056E1D0 /* EditDoctorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDoctorVC.swift; sourceTree = "<group>"; };
 		82512A8419D9B84900454864 /* Hospital Tabbed App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hospital Tabbed App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82512A8819D9B84900454864 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82512A8919D9B84900454864 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				8235D3981A082BC1003789BC /* StringHelper.swift */,
 				82D39D4C1A07E1D5006B35EC /* DoctorsVC.swift */,
 				8235D3961A082552003789BC /* Doctor.swift */,
+				824A000E1A1CF15D0056E1D0 /* EditDoctorVC.swift */,
 				82ED73D01A01C1FD001CF2C9 /* AddPhysicianController.swift */,
 				82B787B51A0A8BA900E03B78 /* ContactsVC.swift */,
 				82B787B71A0A8BD000E03B78 /* Contact.swift */,
@@ -261,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82512A8A19D9B84900454864 /* AppDelegate.swift in Sources */,
+				824A000F1A1CF15D0056E1D0 /* EditDoctorVC.swift in Sources */,
 				B69FFF771A1AA68500CE0C78 /* Settings.swift in Sources */,
 				8235D3971A082552003789BC /* Doctor.swift in Sources */,
 				8235D3991A082BC1003789BC /* StringHelper.swift in Sources */,
