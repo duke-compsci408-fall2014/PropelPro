@@ -71,7 +71,26 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     //deleting
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.Delete {
+        ///dont delete - need for the sliding apparently, idk why for now
+        
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+        
+        var editRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Edit", handler:{action, indexpath in
+            println("Edit•ACTION");
+            
+            //need to write edit action
+            
+            
+        });
+        
+        editRowAction.backgroundColor = UIColor(red: 0.298, green: 0.851, blue: 0.3922, alpha: 1.0);
+        
+        var deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler:{action, indexpath in
+            
+            println("DELETE•ACTION");
+            
             var itemRemove : Contact = self.items[indexPath.row]
             self.items.removeAtIndex(indexPath.row)
             
@@ -83,38 +102,40 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
             self.makeHTTPRequest(url);
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-        }
+        });
         
+        return [deleteRowAction, editRowAction];
     }
+
     
     
     //testing table row expansion
-    var selectedRowIndex: NSIndexPath = NSIndexPath(forRow: -1, inSection: 0)
-    var cellTapped = false
+//    var selectedRowIndex: NSIndexPath = NSIndexPath(forRow: -1, inSection: 0)
+//    var cellTapped = false
+//    
+//    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+//        println("You selected cell #\(indexPath.row)!")
+//        selectedRowIndex = indexPath
+//        println("beginning updates")
+//        tableView.beginUpdates()
+//        println("beginning ending updates")
+//        tableView.endUpdates()
+//    }
     
-    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-        println("You selected cell #\(indexPath.row)!")
-        selectedRowIndex = indexPath
-        println("beginning updates")
-        tableView.beginUpdates()
-        println("beginning ending updates")
-        tableView.endUpdates()
-    }
-    
-    func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-        if indexPath.row == selectedRowIndex.row {
-            if cellTapped == false {
-                cellTapped = true
-                println(indexPath.row)
-                
-                return 150
-            } else {
-                cellTapped = false
-                return 45
-            }
-        }
-        return 45
-    }
+//    func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+//        if indexPath.row == selectedRowIndex.row {
+//            if cellTapped == false {
+//                cellTapped = true
+//                println(indexPath.row)
+//                
+//                return 150
+//            } else {
+//                cellTapped = false
+//                return 45
+//            }
+//        }
+//        return 45
+//    }
     
     
     //making http requests
