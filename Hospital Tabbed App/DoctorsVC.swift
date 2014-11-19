@@ -34,9 +34,7 @@ class DoctorsVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
             if error != nil {
                 println("error!\n\(NSString(data: data, encoding: NSUTF8StringEncoding))")
             } else {
-                println("success!")
                 var output = NSString(data: data, encoding: NSUTF8StringEncoding) as String
-                println(output)
                 var jsonArray : JSONArray = JSONArray(str: output)
                 self.items = [] // clear the old stuff first
                 for obj : JSON in jsonArray.getObjects() {
@@ -52,9 +50,23 @@ class DoctorsVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
         task.resume()
     }
     
-    //deleting
+    // this is a necessary stub for swipe left deleting
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.Delete {
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+        
+        var editRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Edit", handler:{action, indexpath in
+            println("Edit•ACTION");
+            self.performSegueWithIdentifier("editDoctor", sender: indexPath)
+        });
+        
+        editRowAction.backgroundColor = UIColor(red: 0.298, green: 0.851, blue: 0.3922, alpha: 1.0);
+        
+        var deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler:{action, indexpath in
+            
+            println("DELETE•ACTION");
+            
             var itemRemove : Doctor = self.items[indexPath.row]
             self.items.removeAtIndex(indexPath.row)
             
@@ -66,9 +78,11 @@ class DoctorsVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.makeHTTPRequest(url);
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-        }
+        });
         
+        return [deleteRowAction, editRowAction];
     }
+
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.items.count;
@@ -85,15 +99,15 @@ class DoctorsVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         println("You selected cell #\(indexPath.row)!")
-        self.performSegueWithIdentifier("editDoctor", sender: self)
     }
     
     // This populates the edit fields before they are presented
+    // sender is the index path of the cell
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "editDoctor" {
             println("preparing for edit doctor segue")
             let vc = segue.destinationViewController as EditDoctorVC
-            var indexPath : NSIndexPath = self.tableView.indexPathForSelectedRow()!
+            var indexPath : NSIndexPath = sender as NSIndexPath//self.tableView.indexPathForSelectedRow()!
             var doc : Doctor = self.items[indexPath.row]
             vc.doctorId = doc.doctorId
             vc.doctorName = doc.doctorName

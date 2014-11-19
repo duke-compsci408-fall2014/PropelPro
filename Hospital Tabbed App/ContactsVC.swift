@@ -34,9 +34,7 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
             if error != nil {
                 println("error!\n\(NSString(data: data, encoding: NSUTF8StringEncoding))")
             } else {
-                println("success!")
                 var output = NSString(data: data, encoding: NSUTF8StringEncoding) as String
-                println(output)
                 var jsonArray : JSONArray = JSONArray(str: output)
                 self.items = [] // clear the old stuff first
                 for obj : JSON in jsonArray.getObjects() {
