@@ -21,20 +21,25 @@ if($_GET['repeat'] !=""){
     if ($result = mysqli_query($con, $sql)) {
     // output data of each row
         $contactID = "";
-
+        // var_dump($result);
     // Loop through each row in the result set
          while($row = $result->fetch_object())
         {
         // Add each row into our results array
-            $contactID = $row->contact_id;
+            // if($row->contact_id){
+              $contactID = $row->contact_id;
+            // }
         }
         //updating notifications
-        $sqlUpdate = "INSERT INTO notifications(patient_id,contact_id,stat_id)
-                        VALUES(".$_GET['patient_id'].", ". $contactID .", ".$_GET['stat_id'].")";
-        if($con->query($sqlUpdate)){
-            echo "New record in notifications created successfully\n";
-        }else{
-            echo "Error: " . $sqlUpdate . "<br>" . $con->error ."\n";
+
+        $sql = "INSERT INTO notifications (patient_id, contact_id, stat_id, callsOn, textsOn) 
+                VALUES (".$_GET['patient_id'].", '".$contactID."', ".$_GET['stat_id'].", ".$_GET['callsOn']. ", ". $_GET['textsOn'].")";
+        echo $sql;
+
+        if ($con->query($sql) == TRUE) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $con->error;
         }
 
 
@@ -64,14 +69,23 @@ if ($con->query($sql) == TRUE) {
    	 	      	echo "New record in patients_contacts created successfully\n";
                 //updating notifications
                 if($_GET['stat_id']){
-                    $sqlUpdate = "INSERT INTO notifications(patient_id,contact_id,stat_id)
-                               VALUES(".$patientID.", ". $conId .", ".$_GET['stat_id'].")";
-                    if($con->query($sqlUpdate)){
-                       echo "New record in notifications created successfully\n";
+                    if($_GET['textsOn'] && $_GET['callsOn']){
+
+                        $sql = "INSERT INTO notifications (patient_id, contact_id, stat_id, callsOn, textsOn) 
+                                VALUES (".$_GET['patient_id'].", '".$conId."', ".$_GET['stat_id'].", ".$_GET['callsOn']. ", ". $_GET['textsOn'].")";
+
                     }else{
-                      echo "Error: " . $sqlUpdate . "<br>" . $con->error ."\n";
+
+                        $sql = "INSERT INTO notifications (patient_id, contact_id, stat_id) 
+                                VALUES (".$_GET['patient_id'].", '".$conId."', ".$_GET['stat_id'].")";
+                    }
+                    if ($con->query($sql) == TRUE) {
+                        echo "New record created successfully";
+                    } else {
+                        echo "Error: " . $sql . "<br>" . $con->error;
                     }
                 }
+
 		  } else {
     		  echo "Error: " . $sqlUpdate . "<br>" . $con->error ."\n";
     		  //remove since insert in to patient_contact failes
