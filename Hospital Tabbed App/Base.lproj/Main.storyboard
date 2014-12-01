@@ -447,9 +447,16 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hP-67-w5q">
                                 <rect key="frame" x="259" y="118" width="67" height="30"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Update">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="updateNameAction:" destination="ZZb-tY-zet" eventType="touchUpInside" id="oys-XL-pfB"/>
                                 </connections>
@@ -505,7 +512,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="O1T-Qk-eLc" kind="presentation" identifier="editContact" id="lrc-My-G9p"/>
+                                            <segue destination="abc-BM-DeU" kind="presentation" identifier="editContact" id="wfr-Wn-yXd"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -602,13 +609,6 @@
                                     <segue destination="49e-Tb-3d3" kind="presentation" id="0DL-eC-4o6"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Text Notifications " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKS-dQ-gTu">
-                                <rect key="frame" x="0.0" y="172" width="375" height="44"/>
-                                <color key="backgroundColor" red="0.0039215688589999999" green="0.57647061349999995" blue="1" alpha="1" colorSpace="deviceRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Call Notifications " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nkd-Bx-JSx">
                                 <rect key="frame" x="0.0" y="302" width="375" height="44"/>
                                 <color key="backgroundColor" red="0.0039215688589999999" green="0.57647061349999995" blue="1" alpha="1" colorSpace="deviceRGB"/>
@@ -622,7 +622,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="OxySelect:" destination="YtN-hK-EPH" eventType="touchUpInside" id="xl1-K3-1CK"/>
+                                    <action selector="oxyCallSelect:" destination="YtN-hK-EPH" eventType="touchUpInside" id="49A-bN-o0Y"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bz0-1S-CRB">
@@ -631,7 +631,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="hrSelect:" destination="YtN-hK-EPH" eventType="touchUpInside" id="94e-Nz-QL0"/>
+                                    <action selector="hrCallSelect:" destination="YtN-hK-EPH" eventType="touchUpInside" id="TkM-f1-B55"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rgl-zF-29Q">
@@ -640,7 +640,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="stepSelect:" destination="YtN-hK-EPH" eventType="touchUpInside" id="JBd-0F-jOj"/>
+                                    <action selector="stepCallSelect:" destination="YtN-hK-EPH" eventType="touchUpInside" id="zZS-gb-VkG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JWV-1e-c1C">
@@ -649,7 +649,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="bodyMassSelect:" destination="YtN-hK-EPH" eventType="touchUpInside" id="5wM-kJ-xIR"/>
+                                    <action selector="bodyMassCallSelect:" destination="YtN-hK-EPH" eventType="touchUpInside" id="7aR-6Z-8Wv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Oa-jx-YR9">
@@ -658,7 +658,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="OxySelect:" destination="YtN-hK-EPH" eventType="touchUpInside" id="nZw-aV-PWD"/>
+                                    <action selector="oxyTextSelect:" destination="YtN-hK-EPH" eventType="touchUpInside" id="9d2-Jg-G4H"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PKS-mn-DWs">
@@ -667,7 +667,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="hrSelect:" destination="YtN-hK-EPH" eventType="touchUpInside" id="tzr-mt-pue"/>
+                                    <action selector="hrTextSelect:" destination="YtN-hK-EPH" eventType="touchUpInside" id="x3S-eO-kjO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-sw-REs">
@@ -676,7 +676,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="stepSelect:" destination="YtN-hK-EPH" eventType="touchUpInside" id="Skt-Sj-NxO"/>
+                                    <action selector="stepTextSelect:" destination="YtN-hK-EPH" eventType="touchUpInside" id="eN2-3A-l9P"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hPw-8A-igd">
@@ -685,9 +685,16 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="bodyMassSelect:" destination="YtN-hK-EPH" eventType="touchUpInside" id="f7C-2G-tb8"/>
+                                    <action selector="bodyMassTextSelect:" destination="YtN-hK-EPH" eventType="touchUpInside" id="KcZ-AJ-qNV"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Text Notifications " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKS-dQ-gTu">
+                                <rect key="frame" x="0.0" y="172" width="375" height="44"/>
+                                <color key="backgroundColor" red="0.0039215688589999999" green="0.57647061349999995" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -804,48 +811,48 @@
             <point key="canvasLocation" x="1579.5" y="811.5"/>
         </scene>
         <!--Edit Contact Controller-->
-        <scene sceneID="sYh-6X-84h">
+        <scene sceneID="pd3-Me-7SP">
             <objects>
-                <viewController id="O1T-Qk-eLc" customClass="EditContactController" customModule="Hospital_Tabbed_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="abc-BM-DeU" customClass="EditContactController" customModule="Hospital_Tabbed_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="htv-FX-R5u"/>
-                        <viewControllerLayoutGuide type="bottom" id="bFA-Xo-fgp"/>
+                        <viewControllerLayoutGuide type="top" id="LR1-lx-Etb"/>
+                        <viewControllerLayoutGuide type="bottom" id="A3F-AI-WR3"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="fYJ-Mw-vXG">
+                    <view key="view" contentMode="scaleToFill" id="zQs-Om-7yV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2C1-q5-Ltz">
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B2L-Pd-Nur">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <color key="barTintColor" red="0.0039215688589999999" green="0.57647061349999995" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 <items>
-                                    <navigationItem title="Edit The Contact Information" id="Hud-DV-FPj"/>
+                                    <navigationItem title="Edit Contact Information" id="UAy-6U-iVq"/>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wCl-EU-2Or">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPl-QH-2lr">
                                 <rect key="frame" x="88" y="89" width="51" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mobile Number:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4u-p4-yf9">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mobile Number:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5O-gU-J8a">
                                 <rect key="frame" x="16" y="130" width="123" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Name Here" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="waY-wO-TVw">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Name Here" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sgn-th-3eK">
                                 <rect key="frame" x="147" y="85" width="212" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Number Here" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7cf-z2-pjt">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Number Here" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cDy-0r-Dlh">
                                 <rect key="frame" x="147" y="126" width="212" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D0v-R8-z6I">
-                                <rect key="frame" x="206" y="252" width="94" height="30"/>
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6eT-AY-FvI">
+                                <rect key="frame" x="223" y="433" width="94" height="30"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -858,11 +865,11 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="49e-Tb-3d3" kind="presentation" id="9Sh-8C-Dko"/>
+                                    <segue destination="49e-Tb-3d3" kind="presentation" id="p14-hC-GA6"/>
                                 </connections>
                             </button>
-                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mDg-6o-EXe">
-                                <rect key="frame" x="75" y="252" width="94" height="30"/>
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ODP-ns-klv">
+                                <rect key="frame" x="77" y="433" width="94" height="30"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Save">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -875,54 +882,116 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="saveAction:" destination="O1T-Qk-eLc" eventType="touchUpInside" id="7w7-Qq-5IW"/>
-                                    <segue destination="49e-Tb-3d3" kind="presentation" id="HAK-Ss-dbF"/>
+                                    <action selector="saveAction:" destination="abc-BM-DeU" eventType="touchUpInside" id="5UY-2G-tWo"/>
+                                    <segue destination="49e-Tb-3d3" kind="presentation" id="8Sr-mh-95O"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Pn-CO-u1r">
-                                <rect key="frame" x="60" y="169" width="128" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Call Notifications " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wiu-og-QKO">
+                                <rect key="frame" x="0.0" y="302" width="375" height="44"/>
+                                <color key="backgroundColor" red="0.0039215688589999999" green="0.57647061349999995" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mon-Kw-fFn">
+                                <rect key="frame" x="60" y="354" width="128" height="30"/>
                                 <state key="normal" title="Oxygen Saturation">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="oxyCallSelect:" destination="abc-BM-DeU" eventType="touchUpInside" id="6xP-FR-CNS"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vqn-Og-2PX">
-                                <rect key="frame" x="60" y="202" width="128" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MCl-X6-3CM">
+                                <rect key="frame" x="60" y="385" width="128" height="30"/>
                                 <state key="normal" title="Heart Rate">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="hrCallSelect:" destination="abc-BM-DeU" eventType="touchUpInside" id="x1w-eD-fXA"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vzE-LF-I3Y">
-                                <rect key="frame" x="206" y="169" width="128" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2aa-Qw-dUZ">
+                                <rect key="frame" x="206" y="354" width="128" height="30"/>
                                 <state key="normal" title="Steps">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="stepsCallSelect:" destination="abc-BM-DeU" eventType="touchUpInside" id="d6U-nO-kd7"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YFp-FL-nWP">
-                                <rect key="frame" x="206" y="202" width="128" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFE-PT-Rf4">
+                                <rect key="frame" x="206" y="385" width="128" height="30"/>
                                 <state key="normal" title="Body Mass">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="bmCallSelect:" destination="abc-BM-DeU" eventType="touchUpInside" id="Pop-aK-xib"/>
+                                </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKh-s7-nJD">
+                                <rect key="frame" x="60" y="219" width="128" height="30"/>
+                                <state key="normal" title="Oxygen Saturation">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="oxyTextSelect:" destination="abc-BM-DeU" eventType="touchUpInside" id="Df7-TG-JLA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBV-S7-35T">
+                                <rect key="frame" x="60" y="252" width="128" height="30"/>
+                                <state key="normal" title="Heart Rate">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="hrTextSelect:" destination="abc-BM-DeU" eventType="touchUpInside" id="Yi4-oI-Ses"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJc-vM-E0M">
+                                <rect key="frame" x="206" y="219" width="128" height="30"/>
+                                <state key="normal" title="Steps">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="stepsTextSelect:" destination="abc-BM-DeU" eventType="touchUpInside" id="MFF-4f-eeL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vnZ-fO-B7f">
+                                <rect key="frame" x="206" y="252" width="128" height="30"/>
+                                <state key="normal" title="Body Mass">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="bmTextSelect:" destination="abc-BM-DeU" eventType="touchUpInside" id="m5g-Mc-i3H"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Text Notifications " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sw6-I2-d3Q">
+                                <rect key="frame" x="0.0" y="172" width="375" height="44"/>
+                                <color key="backgroundColor" red="0.0039215688589999999" green="0.57647061349999995" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="contactName" destination="waY-wO-TVw" id="iHM-GT-BTT"/>
-                        <outlet property="contactNumber" destination="7cf-z2-pjt" id="elh-0B-lA6"/>
-                        <outlet property="saveButton" destination="mDg-6o-EXe" id="Bh3-rq-y6Y"/>
+                        <outlet property="contactName" destination="sgn-th-3eK" id="j2G-ln-7Bl"/>
+                        <outlet property="contactNumber" destination="cDy-0r-Dlh" id="9Gg-QR-6ud"/>
+                        <outlet property="saveButton" destination="ODP-ns-klv" id="ej2-4v-bQW"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="n6p-a6-rBQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lJl-Uy-hpJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1895.5" y="-1091.5"/>
+            <point key="canvasLocation" x="1741.5" y="-1071.5"/>
         </scene>
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IkC-dU-VXi"/>
+        <segue reference="p14-hC-GA6"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>
