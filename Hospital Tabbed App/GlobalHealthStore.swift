@@ -146,7 +146,12 @@ class GlobalHealthStore {
             } else {
                 println("success!")
                 var output = NSString(data: data, encoding: NSUTF8StringEncoding) as String
-                var object : JSON = JSONArray(str: output).getObjects()[0]
+                var objects : [JSON] = JSONArray(str: output).getObjects()
+                if (objects.count == 0) {
+                    println("no bounds available")
+                    return
+                }
+                var object = objects[0]
                 var map : [String : String] = object.getMap()
                 var lowBound = map["statLowerBound"]
                 var upBound  = map["statUpperBound"]
