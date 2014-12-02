@@ -57,7 +57,20 @@ class GlobalHealthStore {
             }
             return ClassVars.typeIdToStatId
         }
-    }
+
+        static var typeIdToCommonName : [String : String]! = nil
+        static func getTypeIdToCommonNameMap() -> [String : String] {
+            if (ClassVars.typeIdToCommonName == nil) {
+                ClassVars.typeIdToCommonName = [
+                    HKQuantityTypeIdentifierBodyMass : "body mass",
+                    HKQuantityTypeIdentifierStepCount : "step count",
+                    HKQuantityTypeIdentifierHeartRate : "heart rate",
+                    HKQuantityTypeIdentifierOxygenSaturation : "oxygen saturation"
+                ]
+            }
+            return ClassVars.typeIdToCommonName
+        }
+}
     
     
     class func getStore() -> HKHealthStore {
@@ -75,10 +88,6 @@ class GlobalHealthStore {
         if success {
             println("successfully authorized")
             placeAllObserverQueriesAndBackgroundDeliveries()
-//            printCharacteristics()
-//            testHeartRateQuery()
-//            testHeartRateObserverQuery()
-//            testBackgroundDelivery()
         }
     }
     
@@ -126,7 +135,7 @@ class GlobalHealthStore {
         println("\(results.count) results returned of type \(typeIdentifier).")
         
         for result in results as [HKQuantitySample]! {
-            var unitString = ClassVars.getTypeToUnitMap()[typeIdentifier]
+            var unitString = ClassVars.getTypeToUnitMap()[typeIdentifier]! as String
             var unit : HKUnit = HKUnit(fromString: unitString)
             var value : Double = result.quantity.doubleValueForUnit(unit)
             println("Quantity: \(value) \(unitString)")
@@ -138,7 +147,6 @@ class GlobalHealthStore {
     class func fetchBoundsForTypeId(value: Double, typeId : String) {
         var statId = ClassVars.getTypeIdToStatIdMap()[typeId]
         var urlStr = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/bounds/select.php?attribute=*&patient_id='\(ClassVars.deviceId)'&stat_id='\(statId!)'"
-        println(urlStr)
         let url = NSURL(string: urlStr)
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             if error != nil {
@@ -153,22 +161,136 @@ class GlobalHealthStore {
                 }
                 var object = objects[0]
                 var map : [String : String] = object.getMap()
-                var lowBound = map["statLowerBound"]
-                var upBound  = map["statUpperBound"]
+                var lowBound = NSString(string: map["statLowerBound"]!).doubleValue
+                var upBound  = NSString(string: map["statUpperBound"]!).doubleValue
                 
                 // TODO: if the value is outside of the bounds, make notification
-                println("value, low, up:")
-                println(value)
-                println(lowBound)
-                println(upBound)
-                
+                println("value:\(value), low:\(lowBound), up:\(upBound)")
+                GlobalHealthStore.actInResponseToBounds(value, lowerBound: lowBound, upperBound: upBound, typeId: typeId)
             }
         }
         task.resume()
     }
     
-    class func actInResponseToBounds(value: Double, low: Double, up: Double) {
+    // queries:
+    // recipientName,  <-- needs to be found via http
+    // patientName, <-- needs to be found via http
+    // recipientPhoneNumber, <-- needs to be found via http
+    // statName, <-- found in map
+    // statUnit, <-- found in map
+    // statValue,
+    // statLowerBound,
+    // statUpperBound
+    class func actInResponseToBounds(value: Double, lowerBound: Double, upperBound: Double, typeId: String) {
+        if (value >= lowerBound && value <= upperBound) {
+            return; // all is well in the world. no alert is sent
+        }
         
+        var patientId = ClassVars.deviceId
+        var statName = ClassVars.getTypeIdToCommonNameMap()[typeId]! as String
+        var statUnit = ClassVars.getTypeToUnitMap()[typeId]! as String
+        
+        // get patient name first
+        var cleanUrl = StringHelper.cleanURLString("http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/patients/select.php?attribute=*&patient_id='\(patientId)'")
+        var nameUrl = NSURL(string: cleanUrl)
+        let task = NSURLSession.sharedSession().dataTaskWithURL(nameUrl!) {(data, response, error) in
+            if error != nil {
+                println("error finding patient name")
+            } else {
+                var output = NSString(data: data, encoding: NSUTF8StringEncoding) as String
+                var patient : JSON? = nil
+                var name : String? = nil
+                if output.isEmpty || output == "200" {
+                    name = "[unkown]"
+                } else {
+                    patient = JSONArray(str: output).getObjects()[0]
+                    name = patient!.getMap()["patientName"]!
+                }
+                
+                // At this point, we have the name. Now we need contacts.
+                var statId = ClassVars.typeIdToStatId[typeId]!
+                
+                // we need to get all contacts to text
+                var cleanUrl2 = StringHelper.cleanURLString("http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/notifications/getAllTextsOn.php?patient_id='\(patientId)'&stat_id='\(statId)'")
+                var textsUrl = NSURL(string: cleanUrl2)
+                let task2 = NSURLSession.sharedSession().dataTaskWithURL(textsUrl!) {(data, response, error) in
+                    if error != nil {
+                        println("error finding contacts to text")
+                    } else {
+                        var output = NSString(data: data, encoding: NSUTF8StringEncoding) as String
+                        var contacts : [JSON] = JSONArray(str: output).getObjects()
+                        for contact : JSON in contacts {
+                            var map = contact.getMap()
+                            var recipName = map["contactName"]!
+                            var recipNumber = map["contactPhoneNumber"]!
+                            println("TEXT! name: \(recipName), number: \(recipNumber), stat: \(statName)")
+                            
+                            var twilioTextUrlStr = "http://dukecs408-twilio.herokuapp.com/notifyWithText?recipientName=\(recipName)&patientName=\(name!)&recipientPhoneNumber=\(recipNumber)&statName=\(statName)&statValue=\(value)&statUnit=\(statUnit)&statLowerBound=\(lowerBound)&statUpperBound=\(upperBound)"
+                            twilioTextUrlStr = StringHelper.cleanURLString(twilioTextUrlStr)
+                            println("twilio url:")
+                            println(twilioTextUrlStr)
+                            GlobalHealthStore.makeHTTPRequest(twilioTextUrlStr)
+                        }
+                    }
+                }
+                task2.resume()
+                
+                
+                // we need to get all contacts to call
+                var cleanUrl3 = StringHelper.cleanURLString("http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/notifications/getAllCallsOn.php?patient_id='\(patientId)'&stat_id='\(statId)'")
+                var callsUrl = NSURL(string: cleanUrl3)
+                let task3 = NSURLSession.sharedSession().dataTaskWithURL(callsUrl!) {(data, response, error) in
+                    if error != nil {
+                        println("error finding contacts to call")
+                    } else {
+                        var output = NSString(data: data, encoding: NSUTF8StringEncoding) as String
+                        var contacts : [JSON] = JSONArray(str: output).getObjects()
+                        for contact : JSON in contacts {
+                            var map = contact.getMap()
+                            var recipName = map["contactName"]!
+                            var recipNumber = map["contactPhoneNumber"]!
+                            println("CALL! name: \(recipName), number: \(recipNumber), stat: \(statName)")
+                            
+                            var twilioCallUrlStr = "http://dukecs408-twilio.herokuapp.com/notifyWithCall?recipientName=\(recipName)&patientName=\(name!)&recipientPhoneNumber=\(recipNumber)&statName=\(statName)&statValue=\(value)&statUnit=\(statUnit)&statLowerBound=\(lowerBound)&statUpperBound=\(upperBound)"
+                            twilioCallUrlStr = StringHelper.cleanURLString(twilioCallUrlStr)
+                            println("twilio url:")
+                            println(twilioCallUrlStr)
+                            GlobalHealthStore.makeHTTPRequest(twilioCallUrlStr)
+
+                        }
+                    }
+                }
+                task3.resume()
+                
+                // finally text all the doctors
+                // we need to get all contacts to call
+                var cleanUrl4 = StringHelper.cleanURLString("http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/doctors/select.php?attribute=*&patient_id='\(patientId)'")
+                var doctorsUrl = NSURL(string: cleanUrl4)
+                let task4 = NSURLSession.sharedSession().dataTaskWithURL(doctorsUrl!) {(data, response, error) in
+                    if error != nil {
+                        println("error finding doctors to text")
+                    } else {
+                        var output = NSString(data: data, encoding: NSUTF8StringEncoding) as String
+                        var doctors : [JSON] = JSONArray(str: output).getObjects()
+                        for doctor : JSON in doctors {
+                            var map = doctor.getMap()
+                            var recipName = map["doctorName"]!
+                            var recipNumber = map["doctorPhoneNumber"]!
+                            println("TEXT DOCTOR! name: \(recipName), number: \(recipNumber), stat: \(statName)")
+                            
+                            var twilioDoctorUrlStr = "http://dukecs408-twilio.herokuapp.com/notifyWithText?recipientName=\(recipName)&patientName=\(name!)&recipientPhoneNumber=\(recipNumber)&statName=\(statName)&statValue=\(value)&statUnit=\(statUnit)&statLowerBound=\(lowerBound)&statUpperBound=\(upperBound)"
+                            twilioDoctorUrlStr = StringHelper.cleanURLString(twilioDoctorUrlStr)
+                            println(twilioDoctorUrlStr)
+                            GlobalHealthStore.makeHTTPRequest(twilioDoctorUrlStr)
+                            
+                        }
+                    }
+                }
+                task4.resume()
+            }
+        }
+        task.resume()
+
     }
     
     class func backgroundDeliveryEnabled(success : Bool, error: NSError!) {
@@ -182,15 +304,6 @@ class GlobalHealthStore {
     // This is an abridged list of types that can be read. Full list is here: https://developer.apple.com/library/ios/documentation/HealthKit/Reference/HealthKit_Constants/index.html#//apple_ref/doc/constant_group/Body_Measurements
     class func getTypesToReadSet() -> NSSet {
         var typesToRead : [HKObjectType] = []
-        
-//        // Gender
-//        typesToRead.append(HKCharacteristicType.characteristicTypeForIdentifier(HKCharacteristicTypeIdentifierBiologicalSex))
-//        
-//        // Blood type
-//        typesToRead.append(HKCharacteristicType.characteristicTypeForIdentifier(HKCharacteristicTypeIdentifierBloodType))
-//        
-//        // Date of birth
-//        typesToRead.append(HKCharacteristicType.characteristicTypeForIdentifier(HKCharacteristicTypeIdentifierDateOfBirth))
         
         // Body mass
         typesToRead.append(HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMass))
@@ -208,7 +321,18 @@ class GlobalHealthStore {
         return readSet
     }
 
-    
+    class func makeHTTPRequest(urlStringWithParameters : String) {
+        let url = NSURL(string: urlStringWithParameters)
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+            if error != nil {
+                println("error! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
+            } else {
+                println("success! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
+            }
+        }
+        task.resume()
+    }
+
     
     
     
