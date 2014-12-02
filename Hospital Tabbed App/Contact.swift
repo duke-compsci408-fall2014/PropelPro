@@ -12,7 +12,12 @@ class Contact {
     var contactId : String
     var contactName : String
     var contactPhoneNumber : String
-    
+
+    var stepsTuple = (statId:7, isText: false, isCall: false)
+    var bodyMassTuple = (statId:1, isText: false, isCall: false)
+    var oxyTuple = (statId:6, isText: false, isCall: false)
+    var hrTuple = (statId:9, isText: false, isCall: false)
+
     init(id: String, name : String, number : String) {
         self.contactId = id
         self.contactName = name;

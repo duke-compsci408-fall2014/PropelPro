@@ -977,9 +977,17 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="bodyMassCallButton" destination="GFE-PT-Rf4" id="aO8-1s-DbQ"/>
+                        <outlet property="bodyMassTextButton" destination="vnZ-fO-B7f" id="Pwp-bF-QJe"/>
                         <outlet property="contactName" destination="sgn-th-3eK" id="j2G-ln-7Bl"/>
                         <outlet property="contactNumber" destination="cDy-0r-Dlh" id="9Gg-QR-6ud"/>
+                        <outlet property="hrCallButton" destination="MCl-X6-3CM" id="WZn-u1-5ny"/>
+                        <outlet property="hrTextButton" destination="aBV-S7-35T" id="VW2-Zh-6wM"/>
+                        <outlet property="oxyCallButton" destination="mon-Kw-fFn" id="KmP-L5-ozw"/>
+                        <outlet property="oxyTextButton" destination="hKh-s7-nJD" id="eoW-4b-HVk"/>
                         <outlet property="saveButton" destination="ODP-ns-klv" id="ej2-4v-bQW"/>
+                        <outlet property="stepCallButton" destination="2aa-Qw-dUZ" id="zaR-Qf-sUQ"/>
+                        <outlet property="stepTextButton" destination="OJc-vM-E0M" id="SDo-JY-Cfn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lJl-Uy-hpJ" userLabel="First Responder" sceneMemberID="firstResponder"/>

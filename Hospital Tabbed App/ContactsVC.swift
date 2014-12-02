@@ -13,6 +13,8 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
     @IBOutlet weak var tableView: UITableView!
     var items: [Contact] = []
     
+    var deviceId = UIDevice.currentDevice().identifierForVendor.UUIDString;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,9 +27,7 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
     }
     
     func populateContacts() {
-        var deviceId = UIDevice.currentDevice().identifierForVendor.UUIDString;
-        println("Device ID: \(deviceId)");
-        var urlStr = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/contacts/select.php?attribute=*&patient_id='\(deviceId)'"
+        var urlStr = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/contacts/select.php?attribute=*&patient_id='\(self.deviceId)'"
         var url = NSURL(string: urlStr)
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
@@ -42,6 +42,44 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
                     // TODO: update when recipient ID is available
                     var contact = Contact(id: map["contact_id"]!, name: map["contactName"]!, number: map["contactPhoneNumber"]!)
                     self.items.append(contact)
+                    self.updateContactSettingsInTable(contact)
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.tableView.reloadData()
+                })
+            }
+        }
+        task.resume()
+    }
+    
+    func updateContactSettingsInTable(var contact: Contact) {
+        var urlStr = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/notifications/select.php?attribute=*&patient_id='\(self.deviceId)'&contact_id='\(contact.contactId)'"
+        var url = NSURL(string: urlStr)
+        
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+            if error != nil {
+                println("error!\n\(NSString(data: data, encoding: NSUTF8StringEncoding))")
+            } else {
+                var output = NSString(data: data, encoding: NSUTF8StringEncoding) as String
+                var jsonArray : JSONArray = JSONArray(str: output)
+                for statSetting : JSON in jsonArray.getObjects() {
+                    var map : [String : String] = statSetting.getMap()
+                    
+                    var textsOn = map["textsOn"] == "1" // a boolean
+                    var callsOn = map["callsOn"] == "1" // a boolean
+                    
+                    if (map["stat_id"] == "7") {
+                        contact.stepsTuple = (statId:7, isText: textsOn, isCall: callsOn)
+                    } else if (map["stat_id"] == "1") {
+                        contact.bodyMassTuple = (statId:1, isText: textsOn, isCall: callsOn)
+                    } else if (map["stat_id"] == "6") {
+                        contact.oxyTuple = (statId:6, isText: textsOn, isCall: callsOn)
+                    } else if (map["stat_id"] == "9") {
+                        contact.hrTuple = (statId:9, isText: textsOn, isCall: callsOn)
+                    } else {
+                        println("stat id not found when populating contact settings!")
+                    }
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), {
@@ -118,11 +156,17 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
             let vc = segue.destinationViewController as EditContactController
             var indexPath : NSIndexPath = sender as NSIndexPath//self.tableView.indexPathForSelectedRow()!
             var contact : Contact = self.items[indexPath.row]
-            //edit the bottom to pertain to contacts
+            
+            //pre populate the stuff
             vc.contactID = contact.contactId
             vc.name = contact.contactName
             vc.number = contact.contactPhoneNumber
-
+            
+            //pre populate the tuples
+            vc.stepsNotificationTuple = contact.stepsTuple
+            vc.bodyMassNotificationTuple = contact.bodyMassTuple
+            vc.oxyNotificaitonTuple = contact.oxyTuple
+            vc.hrNotificaitionTuple = contact.hrTuple
         }
     }
 

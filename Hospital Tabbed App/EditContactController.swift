@@ -2,7 +2,17 @@
 import UIKit
 
 class EditContactController : UIViewController {
-
+    @IBOutlet weak var oxyTextButton: UIButton!
+    @IBOutlet weak var stepTextButton: UIButton!
+    @IBOutlet weak var hrTextButton: UIButton!
+    @IBOutlet weak var bodyMassTextButton: UIButton!
+    
+    @IBOutlet weak var oxyCallButton: UIButton!
+    @IBOutlet weak var stepCallButton: UIButton!
+    @IBOutlet weak var hrCallButton: UIButton!
+    @IBOutlet weak var bodyMassCallButton: UIButton!
+    
+    
     @IBOutlet weak var contactName: UITextField!
     @IBOutlet weak var contactNumber: UITextField!
     @IBOutlet weak var saveButton: UIButton!
@@ -28,10 +38,38 @@ class EditContactController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-//        contactName.text = self.name
-//        contactNumber.text = self.number
-    }
+        contactName.text = self.name
+        contactNumber.text = self.number
+        
+        // update highlighting
+        self.stepHighLightTuple.call = self.getNumberFromBoolean(self.stepsNotificationTuple.isCall)
+        self.stepHighLightTuple.text = self.getNumberFromBoolean(self.stepsNotificationTuple.isText)
+        self.stepTextButton.highlighted = self.stepsNotificationTuple.isText
+        self.stepCallButton.highlighted = self.stepsNotificationTuple.isCall
 
+        self.bodyMassHighLightTuple.call = self.getNumberFromBoolean(self.bodyMassNotificationTuple.isCall)
+        self.bodyMassHighLightTuple.text = self.getNumberFromBoolean(self.bodyMassNotificationTuple.isText)
+        self.bodyMassTextButton.highlighted = self.bodyMassNotificationTuple.isText
+        self.bodyMassCallButton.highlighted = self.bodyMassNotificationTuple.isCall
+
+        self.oxyHighLightTuple.call = self.getNumberFromBoolean(self.oxyNotificaitonTuple.isCall)
+        self.oxyHighLightTuple.text = self.getNumberFromBoolean(self.oxyNotificaitonTuple.isText)
+        self.oxyTextButton.highlighted = self.oxyNotificaitonTuple.isText
+        self.oxyCallButton.highlighted = self.oxyNotificaitonTuple.isCall
+        
+        self.hRHighLightTuple.call = self.getNumberFromBoolean(self.hrNotificaitionTuple.isCall)
+        self.hRHighLightTuple.text = self.getNumberFromBoolean(self.hrNotificaitionTuple.isText)
+        self.hrTextButton.highlighted = self.hrNotificaitionTuple.isText
+        self.hrCallButton.highlighted = self.hrNotificaitionTuple.isCall
+    }
+    
+    func getNumberFromBoolean(var b : Bool) -> Int {
+        if (b) {
+            return 1
+        } else {
+            return -1
+        }
+    }
 
     @IBAction func oxyTextSelect(sender: UIButton) {
         dispatch_async(dispatch_get_main_queue(), {
