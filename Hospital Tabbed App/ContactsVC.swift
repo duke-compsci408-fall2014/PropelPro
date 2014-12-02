@@ -178,7 +178,7 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
             if error != nil {
                 println("error! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
             } else {
-                println("success! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
+//                println("success! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
             }
         }
         task.resume()

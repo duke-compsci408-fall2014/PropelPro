@@ -46,8 +46,6 @@ class JSON {
                 break;
             }
         }
-        println("the map:")
-        println(map)
     }
     
     func getMap() -> [String : String] {

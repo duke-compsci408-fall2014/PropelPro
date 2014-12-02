@@ -188,41 +188,29 @@ class AddContactController : UIViewController {
         var notifications = [self.stepHighLightTuple,self.bodyMassHighLightTuple,self.oxyHighLightTuple,self.hRHighLightTuple]
         var statIdSelections = [self.stepsNotificationTuple,self.bodyMassNotificationTuple,self.oxyNotificaitonTuple,self.hrNotificaitionTuple];
         
-        println(nameStr)
-        println(phoneNumberStr)
-        var repeat = "";
-        
-        // insert the contacts
-        
-        
-        if (self.checkSelected(self.stepHighLightTuple) || self.checkSelected(self.bodyMassHighLightTuple) || self.checkSelected(self.oxyHighLightTuple) || self.checkSelected(self.hRHighLightTuple)){
-        
-            for i in 0...notifications.count-1 {
-                if( self.checkSelected(notifications[i])){
-        
-                    var url = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/contacts/insert.php?patient_id='\(patientId)'&contactName='\(nameStr)'&contactPhoneNumber='\(phoneNumberStr)'&stat_id='\(statIdSelections[i].statId)'&textsOn=\(statIdSelections[i].isText)&callsOn=\(statIdSelections[i].isCall)&repeat=\(repeat)";
-                    
-                    println("dirty url:" + url);
-                    url = StringHelper.cleanURLString(url)
-//                  println("clean url:" + url);
-                    makeHTTPRequest(url)
-                    repeat = "true"
+        // insert the contact
+        var url = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/contacts/insertAll.php?patient_id='\(patientId)'&contactName='\(nameStr)'&contactPhoneNumber='\(phoneNumberStr)'";
+        url = StringHelper.cleanURLString(url)
+
+        let nsurl = NSURL(string: url)
+        let task = NSURLSession.sharedSession().dataTaskWithURL(nsurl!) {(data, response, error) in
+            if error != nil {
+                println("error! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
+            } else {
+                println("inserted contact! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
+                var contactId = NSString(data: data, encoding: NSASCIIStringEncoding) as String
+                println(contactId)
+                // update all notifications for this contact
+                for i in 0...notifications.count-1 {
+                    var notificationsUrl = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/notifications/update.php?patient_id='\(patientId)'&contact_id='\(contactId)'&stat_id='\(statIdSelections[i].statId)'&textsOn=\(statIdSelections[i].isText)&callsOn=\(statIdSelections[i].isCall)";
+                    notificationsUrl = StringHelper.cleanURLString(notificationsUrl)
+                    println(notificationsUrl)
+                    self.makeHTTPRequest(notificationsUrl)
                 }
-                
-                
-                
             }
-        }else{
-            var url = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/contacts/insert.php?patient_id='\(patientId)'&contactName='\(nameStr)'&contactPhoneNumber='\(phoneNumberStr)'";
-            // println("dirty url:" + url);
-            url = StringHelper.cleanURLString(url)
-            // println("clean url:" + url);
-            makeHTTPRequest(url)
         }
-        
-        //update the notifications
-        
-    }
+        task.resume()
+}
     
     func checkSelected(tuple : (text:Int,call:Int)) -> Bool{
         if(tuple.text != -1 || tuple.call != -1){
