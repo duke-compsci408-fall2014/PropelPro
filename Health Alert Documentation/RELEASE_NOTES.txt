@@ -1,0 +1,22 @@
+RELEASE NOTES
+
+What works:
+
+1. The application greets you by name after you put it in upon first logging on.
+
+2. The ability to add and delete contacts from your "Contacts" page.
+
+3. The ability to add and delete physicians from your "Doctors" page.
+
+4. You can set notifications based on 4 different health monitoring systems.
+
+5. Choose who receives notifications.
+
+6. Choose how your users will receive notifications (via text or phone call).
+
+7. All server API calls function correctly on the CoLab server and on the Heroku server.
+
+8. Can actively change who is getting notifications.
+
+9. Can change the frequencies of the notifications.
+

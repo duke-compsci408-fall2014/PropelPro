@@ -1,0 +1,30 @@
+Getting Started
+        Health Alert is an easy to use applications. The first thing you need to do is get it off the Apple application store. LINK TO OUR APPLICATION
+
+However, as of now, the application is not on the Apple app store. But, you can access the source of our application at our GitHub repository - HERE.
+
+All you have to do is:
+
+Open up a terminal
+cd (directory name) to select the directory that you want to download our source code on
+git clone (the ssh key that is given in our repository)
+Navigate to the download folder and click Hospital Tabbed App.xcodeproj. This will take you to XCode (make sure to have this install).
+Press play and run the iPhone emulation of the app
+Make sure the emulation is of iPhone 6. If there are problems using the git clone command, make sure you have install the developer tools provided by XCode. Downloading and opening XCode the first time should prompt one to install the developer tools. Click yes to that prompt and you should be all set.
+
+
+
+Next Step
+        After the application is installed, the application will bring you to the home screen. If you've use the application for the first time, it will greet you with "Welcome [unknown]". You will have the option to enter your name so that the next time you open the app, it will say "Welcome "your name"". The process to change your name is right under the greeting. Just type your name and press update. You should see the change in greeting immediately.
+
+        This application currently have four tabs. Home, Settings, Contacts and Doctors. To set the upper and lower bound that the device should notified you or your contacts and doctors about, go to the settings tab and enter your desire bounds accordingly and press the save button.
+
+        In both the Contacts and Doctors tab, you can add, remove or edit the contacts and doctors that you want. At the start, your contact list will be blank as there are no contacts associated with your phone. To add a contact, tap the Add button on the upper left hand corner which will bring you to another page where you can add the contact's name and his/her phone number. The you can select the different notifications that your contact will get if you fail to meet the bounds that you've set.
+
+        When the contact is created, it will show on the contact list. You can swipe left on the contact to reveal two options - Edit and Delete. As the name suggest, you can tap either one of them to accomplish what you need to do. As for the doctor's tab, everything that you know how to do for the contacts right now is the same for the doctors. However, the notifications options that you see in contacts are not within the doctors.
+
+
+
+Maintenance
+        The application must be used wifi or cellular data. With that said, there needs to be servers that the application can get it's data from and send data to. A database and a twilio server. Within the source code, there is a file call database that contains a SQL file to create the inital database. Just set up the MySQL database and run the SQL file using the database. Within that database folder, there are also many other folder such as contact, doctors, notifications etc. Drag these folders into another folder (whatever you decide to name it) and dump that folder on to the server where you can accesses it through URL. These are php database queries that the app uses to access the data. You will need to modified the URL that the application is pulling its request from. As with setting up the twilio server, instructions can be found HERE
+

@@ -1,0 +1,17 @@
+HEALTH ALERT
+
+ABOUT
+
+HealthAlert allows users to monitor important vital statistics of their family and friends. Doing this is simple: connect your devices to your iPod or iPhone, put in the phone numbers of the family and friends you want to be notified when a health event occurs, and our app does the rest of the work!
+
+CREDITS
+
+Created at Duke University in the Compsci 408S Fall 2014 class.
+
+Team Members
+
+Ethan Gottlieb
+
+Wei Chen
+
+Chinmay Patwardhan

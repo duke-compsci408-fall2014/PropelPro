@@ -1,0 +1,21 @@
+BACKLOG
+
+Health Alert
+
+1. Email? as another option
+
+2. Deciding on the frequency that the doctor should get the notifications
+
+3. Running the application in the background
+
+4. The latency of notifications and pulling from health kit
+
+5. Displaying data gathered from each health device on the home tab
+
+6. Ease of changing to a different database
+
+7. Put in the App Store.
+
+8. Decide whether the app should or should not support all the devices that Health Kit does.
+
+9. Better looking interface
