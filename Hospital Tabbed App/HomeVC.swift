@@ -31,7 +31,7 @@ class HomeVC : UIViewController {
     
     func fetchName() {
         println("fetching name")
-        var urlStr = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/patients/select.php?attribute=*&patient_id='\(deviceId)'"
+        var urlStr = "\(Constants.URL_PATIENTS_SELECT)attribute=*&patient_id='\(deviceId)'"
         var url = NSURL(string: urlStr)
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             if error != nil {
@@ -60,7 +60,7 @@ class HomeVC : UIViewController {
             self.welcomeLabel.text = "Welcome, \(newName)"
             self.nameField.text = ""
         });
-        var urlStr = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/patients/update.php?patient_id='\(deviceId)'&patientName='\(StringHelper.cleanURLString(newName))'"
+        var urlStr = StringHelper.cleanURLString("\(Constants.URL_PATIENTS_UPDATE)patient_id='\(deviceId)'&patientName='\(newName)'")
         var url = NSURL(string: urlStr)
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             if error != nil {

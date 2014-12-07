@@ -90,27 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hospital Tabbed App/GlobalHealthStore.swift"
-            timestampString = "438125273.507296"
+            timestampString = "439674947.607909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "getTypeToUnitMap()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Hospital Tabbed App/GlobalHealthStore.swift"
-            timestampString = "439181081.68204"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "queryHandler(_:results:error:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hospital Tabbed App/GlobalHealthStore.swift"
-            timestampString = "439181081.68204"
+            timestampString = "439674947.607909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "placeQuery(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hospital Tabbed App/GlobalHealthStore.swift"
-            timestampString = "439181081.68204"
+            timestampString = "439674947.607909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "queryHandler(_:results:error:)"
             landmarkType = "5">
          </BreakpointContent>

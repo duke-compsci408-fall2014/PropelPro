@@ -24,19 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-    
-    // Places a GET request
-    // Note: parameters must be included like the following example:
-    // www.thisisaurl.com/blah?p1=chinmay&p2=google&p3=abcdefg
-    func makeHTTPRequest(urlStringWithParameters : String) {
-        let url = NSURL(string: urlStringWithParameters)
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-            println(NSString(data: data, encoding: NSUTF8StringEncoding))
-        }
-        task.resume()
-    }
-    
-    
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

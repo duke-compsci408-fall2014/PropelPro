@@ -45,7 +45,7 @@ class Settings : UIViewController, UITableViewDelegate {
     }
 
     func populateSettings() {
-        var urlStr = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/bounds/select.php?attribute=*&patient_id='\(patient_id)'"
+        var urlStr = "\(Constants.URL_BOUNDS_SELECT)attribute=*&patient_id='\(patient_id)'"
         let url = NSURL(string: urlStr)
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             if error != nil {
@@ -141,29 +141,16 @@ class Settings : UIViewController, UITableViewDelegate {
         println(lowerBound)
         println(upperBound)
         
-        var urlStr = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/bounds/insert.php?patient_id='\(patient_id)'&stat_id='\(stat_id)'&statLowerBound='\(lowerBound)'&statUpperBound='\(upperBound)'";
+        var urlStr = "\(Constants.URL_BOUNDS_INSERT)patient_id='\(patient_id)'&stat_id='\(stat_id)'&statLowerBound='\(lowerBound)'&statUpperBound='\(upperBound)'";
         
         var url = StringHelper.cleanURLString(urlStr);
         
-        self.makeHTTPRequest(url);
+        HTTPHelper.makeHTTPRequest(url);
 
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         self.view.endEditing(true)
     }
-
-    func makeHTTPRequest(urlStringWithParameters : String) {
-        let url = NSURL(string: urlStringWithParameters)
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-            if error != nil {
-                println("error! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
-            } else {
-                println("success! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
-            }
-        }
-        task.resume()
-    }
-
 }
 

@@ -27,7 +27,7 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
     }
     
     func populateContacts() {
-        var urlStr = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/contacts/select.php?attribute=*&patient_id='\(self.deviceId)'"
+        var urlStr = "\(Constants.URL_CONTACTS_SELECT)attribute=*&patient_id='\(self.deviceId)'"
         var url = NSURL(string: urlStr)
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
@@ -54,7 +54,7 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
     }
     
     func updateContactSettingsInTable(var contact: Contact) {
-        var urlStr = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/notifications/select.php?attribute=*&patient_id='\(self.deviceId)'&contact_id='\(contact.contactId)'"
+        var urlStr = "\(Constants.URL_NOTIFICATIONS_SELECT)attribute=*&patient_id='\(self.deviceId)'&contact_id='\(contact.contactId)'"
         var url = NSURL(string: urlStr)
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
@@ -131,12 +131,12 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
             var itemRemove : Contact = self.items[indexPath.row]
             self.items.removeAtIndex(indexPath.row)
             
-            var urlStr = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/contacts/delete.php?contact_id='\(itemRemove.contactId)'";
+            var urlStr = "\(Constants.URL_CONTACTS_DELETE)contact_id='\(itemRemove.contactId)'";
             println(urlStr);
             
             var url = StringHelper.cleanURLString(urlStr);
             
-            self.makeHTTPRequest(url);
+            HTTPHelper.makeHTTPRequest(url);
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         });
@@ -169,20 +169,5 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
             vc.hrNotificaitionTuple = contact.hrTuple
         }
     }
-
-    
-    //making http requests
-    func makeHTTPRequest(urlStringWithParameters : String) {
-        let url = NSURL(string: urlStringWithParameters)
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-            if error != nil {
-                println("error! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
-            } else {
-//                println("success! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
-            }
-        }
-        task.resume()
-    }
-    
 }
 

@@ -189,7 +189,7 @@ class AddContactController : UIViewController {
         var statIdSelections = [self.stepsNotificationTuple,self.bodyMassNotificationTuple,self.oxyNotificaitonTuple,self.hrNotificaitionTuple];
         
         // insert the contact
-        var url = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/contacts/insertAll.php?patient_id='\(patientId)'&contactName='\(nameStr)'&contactPhoneNumber='\(phoneNumberStr)'";
+        var url = "\(Constants.URL_CONTACTS_INSERT_ALL)patient_id='\(patientId)'&contactName='\(nameStr)'&contactPhoneNumber='\(phoneNumberStr)'";
         url = StringHelper.cleanURLString(url)
 
         let nsurl = NSURL(string: url)
@@ -202,10 +202,10 @@ class AddContactController : UIViewController {
                 println(contactId)
                 // update all notifications for this contact
                 for i in 0...notifications.count-1 {
-                    var notificationsUrl = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/notifications/update.php?patient_id='\(patientId)'&contact_id='\(contactId)'&stat_id='\(statIdSelections[i].statId)'&textsOn=\(statIdSelections[i].isText)&callsOn=\(statIdSelections[i].isCall)";
+                    var notificationsUrl = "\(Constants.URL_NOTIFICATIONS_UPDATE)patient_id='\(patientId)'&contact_id='\(contactId)'&stat_id='\(statIdSelections[i].statId)'&textsOn=\(statIdSelections[i].isText)&callsOn=\(statIdSelections[i].isCall)";
                     notificationsUrl = StringHelper.cleanURLString(notificationsUrl)
                     println(notificationsUrl)
-                    self.makeHTTPRequest(notificationsUrl)
+                    HTTPHelper.makeHTTPRequest(notificationsUrl)
                 }
             }
         }
@@ -218,18 +218,5 @@ class AddContactController : UIViewController {
         }
         return false;
     }
-        
-    func makeHTTPRequest(urlStringWithParameters : String) {
-        let url = NSURL(string: urlStringWithParameters)
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-            if error != nil {
-                println("error! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
-            } else {
-                println("success! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
-            }
-        }
-        task.resume()
-    }
-    
 }
 

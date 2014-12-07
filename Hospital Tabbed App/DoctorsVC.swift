@@ -31,7 +31,7 @@ class DoctorsVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
     func populateDoctors() {
         var deviceId = UIDevice.currentDevice().identifierForVendor.UUIDString;
         println("Device ID: \(deviceId)");
-        var urlStr = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/doctors/select.php?attribute=*&patient_id='\(deviceId)'"
+        var urlStr = "\(Constants.URL_DOCTORS_SELECT)attribute=*&patient_id='\(deviceId)'"
         var url = NSURL(string: urlStr)
 
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
@@ -74,12 +74,12 @@ class DoctorsVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
             var itemRemove : Doctor = self.items[indexPath.row]
             self.items.removeAtIndex(indexPath.row)
             
-            var urlStr = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/doctors/delete.php?doctor_id='\(itemRemove.doctorId)'";
+            var urlStr = "\(Constants.URL_DOCTORS_DELETE)doctor_id='\(itemRemove.doctorId)'";
             println(urlStr);
             
             var url = StringHelper.cleanURLString(urlStr);
             
-            self.makeHTTPRequest(url);
+            HTTPHelper.makeHTTPRequest(url);
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         });
@@ -118,18 +118,6 @@ class DoctorsVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
             vc.doctorPhoneNumber = doc.doctorPhoneNumber
             vc.doctorAddress = doc.doctorAddress
         }
-    }
-    
-    func makeHTTPRequest(urlStringWithParameters : String) {
-        let url = NSURL(string: urlStringWithParameters)
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-            if error != nil {
-                println("error! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
-            } else {
-                println("success! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
-            }
-        }
-        task.resume()
     }
 }
 

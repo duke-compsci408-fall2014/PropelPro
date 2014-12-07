@@ -198,16 +198,16 @@ class EditContactController : UIViewController {
         
         // insert the contacts
 
-        var url1 = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/contacts/update.php?patient_id='\(patientId)'&contact_id='\(self.contactID)'&contactName='\(nameStr)'&contactPhoneNumber='\(phoneNumberStr)'";
+        var url1 = "\(Constants.URL_CONTACTS_UPDATE)patient_id='\(patientId)'&contact_id='\(self.contactID)'&contactName='\(nameStr)'&contactPhoneNumber='\(phoneNumberStr)'";
         url1 = StringHelper.cleanURLString(url1)
         println("clean url:" + url1);
-        makeHTTPRequest(url1)
+        HTTPHelper.makeHTTPRequest(url1)
 
         for i in 0...notifications.count-1 {
-            var url2 = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/notifications/update.php?patient_id='\(patientId)'&contact_id='\(self.contactID)'&stat_id='\(statIdSelections[i].statId)'&textsOn=\(statIdSelections[i].isText)&callsOn=\(statIdSelections[i].isCall)";
+            var url2 = "\(Constants.URL_NOTIFICATIONS_UPDATE)patient_id='\(patientId)'&contact_id='\(self.contactID)'&stat_id='\(statIdSelections[i].statId)'&textsOn=\(statIdSelections[i].isText)&callsOn=\(statIdSelections[i].isCall)";
             url2 = StringHelper.cleanURLString(url2)
             println("clean url:" + url2);
-            makeHTTPRequest(url2)
+            HTTPHelper.makeHTTPRequest(url2)
         }
         
     }
@@ -223,18 +223,5 @@ class EditContactController : UIViewController {
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         self.view.endEditing(true)
     }
-    
-    func makeHTTPRequest(urlStringWithParameters : String) {
-        let url = NSURL(string: urlStringWithParameters)
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-            if error != nil {
-                println("error! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
-            } else {
-                println("success! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
-            }
-        }
-        task.resume()
-    }
-    
 }
 

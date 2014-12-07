@@ -34,24 +34,11 @@ class AddPhysicianController : UIViewController {
         println(nameStr)
         println(phoneNumberStr)
         println(addressStr)
-        var url = "http://colab-sbx-211.oit.duke.edu/PHPDatabaseCalls/doctors/insert.php?patient_id='\(patientId)'&doctorName='\(nameStr)'&doctorPhoneNumber='\(phoneNumberStr)'&doctorAddress='\(addressStr)'";
+        var url = "\(Constants.URL_DOCTORS_INSERT)patient_id='\(patientId)'&doctorName='\(nameStr)'&doctorPhoneNumber='\(phoneNumberStr)'&doctorAddress='\(addressStr)'";
         println("dirty url:" + url);
         url = StringHelper.cleanURLString(url)
         println("clean url:" + url);
-        makeHTTPRequest(url)
+        HTTPHelper.makeHTTPRequest(url)
     }
-    
-    func makeHTTPRequest(urlStringWithParameters : String) {
-        let url = NSURL(string: urlStringWithParameters)
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-            if error != nil {
-                println("error! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
-            } else {
-                println("success! \(NSString(data: data, encoding: NSUTF8StringEncoding))")
-            }
-        }
-        task.resume()
-    }
-    
 }
 
