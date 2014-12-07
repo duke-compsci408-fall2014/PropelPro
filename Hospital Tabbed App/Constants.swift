@@ -11,8 +11,14 @@ import HealthKit
 
 struct Constants {
     // This gets the UUID of the current device, which is used as the patient ID
-    static var DEVICE_ID = UIDevice.currentDevice().identifierForVendor.UUIDString;
+    static let DEVICE_ID = UIDevice.currentDevice().identifierForVendor.UUIDString;
     
+    // this can turn twilio notifications on/off when testing
+    // In production, this should stay true!!!
+    static let DEBUG_NOTIFICATIONS_ON = false
+    
+    static let NOTIFICATION_TYPE_CALL = "CALL"
+    static let NOTIFICATION_TYPE_TEXT = "TEXT"
     
     // Base URLs for Database API:
     private static var URL_DB_SERVER = "http://colab-sbx-211.oit.duke.edu"

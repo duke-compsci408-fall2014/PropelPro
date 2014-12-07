@@ -148,6 +148,10 @@ class GlobalHealthStore {
         var statName = Constants.getTypeIdToCommonNameMap()[typeId]! as String
         var statUnit = Constants.getTypeToUnitMap()[typeId]! as String
         
+        var valueStr = "\(value)"
+        var lowerBoundStr = "\(lowerBound)"
+        var upperBoundStr = "\(upperBound)"
+        
         // get patient name first
         var cleanUrl = StringHelper.cleanURLString("\(Constants.URL_PATIENTS_SELECT)attribute=*&patient_id='\(patientId)'")
         var nameUrl = NSURL(string: cleanUrl)
@@ -169,7 +173,7 @@ class GlobalHealthStore {
                 var statId = Constants.getTypeIdToStatIdMap()[typeId]!
                 
                 // we need to get all contacts to text
-                var cleanUrl2 = StringHelper.cleanURLString("\(Constants.URL_NOTIFICATION_GET_ALL_TEXTS_ON)patient_id='\(patientId)'&stat_id='\(statId)'")
+                var cleanUrl2 = StringHelper.cleanURLString("\(Constants.URL_NOTIFICATIONS_GET_ALL_TEXTS_ON)patient_id='\(patientId)'&stat_id='\(statId)'")
                 var textsUrl = NSURL(string: cleanUrl2)
                 let task2 = NSURLSession.sharedSession().dataTaskWithURL(textsUrl!) {(data, response, error) in
                     if error != nil {
@@ -181,13 +185,7 @@ class GlobalHealthStore {
                             var map = contact.getMap()
                             var recipName = map["contactName"]!
                             var recipNumber = map["contactPhoneNumber"]!
-                            println("TEXT! name: \(recipName), number: \(recipNumber), stat: \(statName)")
-                            
-                            var twilioTextUrlStr = "\(Constants.URL_TWILIO_TEXTS)recipientName=\(recipName)&patientName=\(name!)&recipientPhoneNumber=\(recipNumber)&statName=\(statName)&statValue=\(value)&statUnit=\(statUnit)&statLowerBound=\(lowerBound)&statUpperBound=\(upperBound)"
-                            twilioTextUrlStr = StringHelper.cleanURLString(twilioTextUrlStr)
-                            println("twilio url:")
-                            println(twilioTextUrlStr)
-                            HTTPHelper.makeHTTPRequest(twilioTextUrlStr)
+                            GlobalHealthStore.makeNotification(Constants.NOTIFICATION_TYPE_TEXT, recipName:recipName, name: name!, recipNumber: recipNumber, statName: statName, value: valueStr, statUnit: statUnit, lowerBound: lowerBoundStr, upperBound: upperBoundStr)
                         }
                     }
                 }
@@ -195,7 +193,7 @@ class GlobalHealthStore {
                 
                 
                 // we need to get all contacts to call
-                var cleanUrl3 = StringHelper.cleanURLString("\(Constants.URL_NOTIFICATION_GET_ALL_CALLS_ON)patient_id='\(patientId)'&stat_id='\(statId)'")
+                var cleanUrl3 = StringHelper.cleanURLString("\(Constants.URL_NOTIFICATIONS_GET_ALL_CALLS_ON)patient_id='\(patientId)'&stat_id='\(statId)'")
                 var callsUrl = NSURL(string: cleanUrl3)
                 let task3 = NSURLSession.sharedSession().dataTaskWithURL(callsUrl!) {(data, response, error) in
                     if error != nil {
@@ -207,13 +205,7 @@ class GlobalHealthStore {
                             var map = contact.getMap()
                             var recipName = map["contactName"]!
                             var recipNumber = map["contactPhoneNumber"]!
-                            println("CALL! name: \(recipName), number: \(recipNumber), stat: \(statName)")
-                            
-                            var twilioCallUrlStr = "\(Constants.URL_TWILIO_CALLS)recipientName=\(recipName)&patientName=\(name!)&recipientPhoneNumber=\(recipNumber)&statName=\(statName)&statValue=\(value)&statUnit=\(statUnit)&statLowerBound=\(lowerBound)&statUpperBound=\(upperBound)"
-                            twilioCallUrlStr = StringHelper.cleanURLString(twilioCallUrlStr)
-                            println("twilio url:")
-                            println(twilioCallUrlStr)
-                            HTTPHelper.makeHTTPRequest(twilioCallUrlStr)
+                            GlobalHealthStore.makeNotification(Constants.NOTIFICATION_TYPE_CALL, recipName:recipName, name: name!, recipNumber: recipNumber, statName: statName, value: valueStr, statUnit: statUnit, lowerBound: lowerBoundStr, upperBound: upperBoundStr)
 
                         }
                     }
@@ -234,13 +226,7 @@ class GlobalHealthStore {
                             var map = doctor.getMap()
                             var recipName = map["doctorName"]!
                             var recipNumber = map["doctorPhoneNumber"]!
-                            println("TEXT DOCTOR! name: \(recipName), number: \(recipNumber), stat: \(statName)")
-                            
-                            var twilioDoctorUrlStr = "\(Constants.URL_TWILIO_TEXTS)recipientName=\(recipName)&patientName=\(name!)&recipientPhoneNumber=\(recipNumber)&statName=\(statName)&statValue=\(value)&statUnit=\(statUnit)&statLowerBound=\(lowerBound)&statUpperBound=\(upperBound)"
-                            twilioDoctorUrlStr = StringHelper.cleanURLString(twilioDoctorUrlStr)
-                            println(twilioDoctorUrlStr)
-                            HTTPHelper.makeHTTPRequest(twilioDoctorUrlStr)
-                            
+                            GlobalHealthStore.makeNotification(Constants.NOTIFICATION_TYPE_TEXT, recipName:recipName, name: name!, recipNumber: recipNumber, statName: statName, value: valueStr, statUnit: statUnit, lowerBound: lowerBoundStr, upperBound: upperBoundStr)
                         }
                     }
                 }
@@ -249,6 +235,26 @@ class GlobalHealthStore {
         }
         task.resume()
 
+    }
+    
+    class func makeNotification(notificationType:String, recipName:String, name:String, recipNumber:String, statName:String, value:String, statUnit:String, lowerBound:String, upperBound:String) {
+        
+        if Constants.DEBUG_NOTIFICATIONS_ON == false {
+            println("\(notificationType) suppressed because DEBUG_NOTIFICATIONS_ON is set to false")
+            return
+        }
+        
+        var baseUrl = ""
+        if notificationType == Constants.NOTIFICATION_TYPE_TEXT {
+            baseUrl = Constants.URL_TWILIO_TEXTS
+        } else if notificationType == Constants.NOTIFICATION_TYPE_CALL {
+            baseUrl = Constants.URL_TWILIO_CALLS
+        }
+        
+        var twilioTextUrlStr = "\(baseUrl)recipientName=\(recipName)&patientName=\(name)&recipientPhoneNumber=\(recipNumber)&statName=\(statName)&statValue=\(value)&statUnit=\(statUnit)&statLowerBound=\(lowerBound)&statUpperBound=\(upperBound)"
+        twilioTextUrlStr = StringHelper.cleanURLString(twilioTextUrlStr)
+        println(twilioTextUrlStr)
+        HTTPHelper.makeHTTPRequest(twilioTextUrlStr)
     }
     
     class func backgroundDeliveryEnabled(success : Bool, error: NSError!) {

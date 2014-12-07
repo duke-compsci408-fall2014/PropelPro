@@ -58,7 +58,7 @@ class HomeVC : UIViewController {
             self.welcomeLabel.text = "Welcome, \(newName)"
             self.nameField.text = ""
         });
-        var urlStr = StringHelper.cleanURLString("\(Constants.URL_PATIENTS_UPDATE)patient_id='\(deviceId)'&patientName='\(newName)'")
+        var urlStr = StringHelper.cleanURLString("\(Constants.URL_PATIENTS_UPDATE)patient_id='\(Constants.DEVICE_ID)'&patientName='\(newName)'")
         var url = NSURL(string: urlStr)
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             if error != nil {
