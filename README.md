@@ -14,9 +14,6 @@ Notifications are made via call or text using the Twilio Calling and Texting API
 
 The database that we are using is a MySQL database that is hosted by Duke Co-lab’s Bitnami VM. While we are pulling data from the database that is used by HealthKit, we’re also using our MySQL database to store things like Doctor’s information, patient’s notification preference etc. Our MySQL database contains the schema for Bounds, Doctors, Notifications, Patients, Patients_Doctors, and Stats. Like the notifications, this repository will only contains a copy of the PHP code that is use to get retrieve data from the database. The actual repository will be placed within the Apache2 server within the co-lab Bitnami VM. These fill will generate a JSON file of the information that our IOS app is requesting from the database. 
 
-Accessing the Co-lab MySQL database: 
+Accessing MySQL database: Ask us
 
-http://colab-sbx-211.oit.duke.edu/phpmyadmin
-User - root
-Password - bitnami
 
