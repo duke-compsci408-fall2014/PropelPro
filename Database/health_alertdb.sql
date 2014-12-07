@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Nov 08, 2014 at 05:07 AM
+-- Generation Time: Dec 07, 2014 at 11:50 AM
 -- Server version: 5.5.38
 -- PHP Version: 5.4.31
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `bounds` (
   `statUpperBound` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `contacts`
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `contacts` (
 `contact_id` int(11) NOT NULL,
   `contactName` varchar(100) NOT NULL DEFAULT 'Insert Name',
   `contactPhoneNumber` varchar(100) NOT NULL DEFAULT 'Insert Telephone Number'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=118 ;
 
 -- --------------------------------------------------------
 
@@ -58,9 +58,9 @@ CREATE TABLE IF NOT EXISTS `doctors` (
   `doctorName` varchar(100) NOT NULL DEFAULT '',
   `doctorPhoneNumber` varchar(100) NOT NULL DEFAULT '',
   `doctorAddress` varchar(200) NOT NULL DEFAULT ''
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=50 ;
 
-
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `notifications`
@@ -70,8 +70,8 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `patient_id` varchar(100) NOT NULL,
   `contact_id` int(11) NOT NULL,
   `stat_id` int(11) NOT NULL,
-  `callsOn` tinyint(1) NOT NULL DEFAULT '1',
-  `textsOn` tinyint(1) NOT NULL DEFAULT '1'
+  `callsOn` tinyint(1) NOT NULL DEFAULT '0',
+  `textsOn` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `patients` (
   `patientName` varchar(100) NOT NULL DEFAULT 'Insert Name'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `patients_contacts`
@@ -93,8 +93,8 @@ CREATE TABLE IF NOT EXISTS `patients` (
 
 CREATE TABLE IF NOT EXISTS `patients_contacts` (
   `patient_id` varchar(100) NOT NULL,
-`contact_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `contact_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `patients_doctors` (
   `doctor_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `stats`
@@ -117,15 +117,17 @@ CREATE TABLE IF NOT EXISTS `stats` (
 `stat_id` int(11) NOT NULL,
   `statName` varchar(100) NOT NULL,
   `statUnit` varchar(100) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
-
+--
+-- Indexes for dumped tables
+--
 
 --
 -- Indexes for table `bounds`
 --
 ALTER TABLE `bounds`
- ADD KEY `patient_id` (`patient_id`), ADD KEY `stat_id` (`stat_id`);
+ ADD PRIMARY KEY (`patient_id`,`stat_id`), ADD KEY `stat_id` (`stat_id`);
 
 --
 -- Indexes for table `contacts`
@@ -143,7 +145,7 @@ ALTER TABLE `doctors`
 -- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
- ADD KEY `patient_id` (`patient_id`), ADD KEY `contact_id` (`contact_id`), ADD KEY `stat_id` (`stat_id`);
+ ADD PRIMARY KEY (`patient_id`,`contact_id`,`stat_id`), ADD KEY `contact_id` (`contact_id`), ADD KEY `stat_id` (`stat_id`);
 
 --
 -- Indexes for table `patients`
@@ -155,7 +157,7 @@ ALTER TABLE `patients`
 -- Indexes for table `patients_contacts`
 --
 ALTER TABLE `patients_contacts`
- ADD KEY `patient_id` (`patient_id`), ADD KEY `contact_id` (`contact_id`);
+ ADD PRIMARY KEY (`patient_id`,`contact_id`), ADD KEY `contact_id` (`contact_id`);
 
 --
 -- Indexes for table `patients_doctors`
@@ -177,22 +179,17 @@ ALTER TABLE `stats`
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
-MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=118;
 --
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
---
--- AUTO_INCREMENT for table `patients_contacts`
---
-ALTER TABLE `patients_contacts`
-MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=50;
 --
 -- AUTO_INCREMENT for table `stats`
 --
 ALTER TABLE `stats`
-MODIFY `stat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `stat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- Constraints for dumped tables
 --
@@ -202,7 +199,9 @@ MODIFY `stat_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 ALTER TABLE `bounds`
 ADD CONSTRAINT `bounds_ibfk_1` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`patient_id`),
-ADD CONSTRAINT `bounds_ibfk_2` FOREIGN KEY (`stat_id`) REFERENCES `stats` (`stat_id`);
+ADD CONSTRAINT `bounds_ibfk_2` FOREIGN KEY (`stat_id`) REFERENCES `stats` (`stat_id`),
+ADD CONSTRAINT `bounds_ibfk_3` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`patient_id`),
+ADD CONSTRAINT `bounds_ibfk_4` FOREIGN KEY (`stat_id`) REFERENCES `stats` (`stat_id`);
 
 --
 -- Constraints for table `notifications`
