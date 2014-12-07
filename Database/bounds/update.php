@@ -1,6 +1,9 @@
 <?php
 
-$con = mysqli_connect("localhost", "root", "bitnami", "health_alertdb");
+include('../ConnectionInfo.php');
+
+// Create connection
+$con=mysqli_connect($host,$username,$password,$database);
 
 if(mysqli_connect_errno()){
 	echo "Fail to connect to MySQL: ". mysqli_connect_errno();
