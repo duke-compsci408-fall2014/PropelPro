@@ -16,32 +16,32 @@ struct Constants {
     
     // Base URLs for Database API:
     private static var URL_DB_SERVER = "http://colab-sbx-211.oit.duke.edu"
-    static var URL_BOUNDS_INSERT = "\(URL_DB_SERVER)/PHPDatabaseCalls/bounds/insert.php?"
-    static var URL_BOUNDS_SELECT = "\(URL_DB_SERVER)/PHPDatabaseCalls/bounds/select.php?"
+    static let URL_BOUNDS_INSERT = "\(URL_DB_SERVER)/PHPDatabaseCalls/bounds/insert.php?"
+    static let URL_BOUNDS_SELECT = "\(URL_DB_SERVER)/PHPDatabaseCalls/bounds/select.php?"
     
-    static var URL_CONTACTS_DELETE = "\(URL_DB_SERVER)/PHPDatabaseCalls/contacts/delete.php?"
-    static var URL_CONTACTS_INSERT_ALL = "\(URL_DB_SERVER)/PHPDatabaseCalls/contacts/insert.php?"
-    static var URL_CONTACTS_SELECT = "\(URL_DB_SERVER)/PHPDatabaseCalls/contacts/select.php?"
-    static var URL_CONTACTS_UPDATE = "\(URL_DB_SERVER)/PHPDatabaseCalls/contacts/update.php?"
+    static let URL_CONTACTS_DELETE = "\(URL_DB_SERVER)/PHPDatabaseCalls/contacts/delete.php?"
+    static let URL_CONTACTS_INSERT_ALL = "\(URL_DB_SERVER)/PHPDatabaseCalls/contacts/insert.php?"
+    static let URL_CONTACTS_SELECT = "\(URL_DB_SERVER)/PHPDatabaseCalls/contacts/select.php?"
+    static let URL_CONTACTS_UPDATE = "\(URL_DB_SERVER)/PHPDatabaseCalls/contacts/update.php?"
     
-    static var URL_DOCTORS_DELETE = "\(URL_DB_SERVER)/PHPDatabaseCalls/doctors/delete.php?"
-    static var URL_DOCTORS_INSERT = "\(URL_DB_SERVER)/PHPDatabaseCalls/doctors/insert.php?"
-    static var URL_DOCTORS_SELECT = "\(URL_DB_SERVER)/PHPDatabaseCalls/doctors/select.php?"
-    static var URL_DOCTORS_UPDATE = "\(URL_DB_SERVER)/PHPDatabaseCalls/doctors/update.php?"
+    static let URL_DOCTORS_DELETE = "\(URL_DB_SERVER)/PHPDatabaseCalls/doctors/delete.php?"
+    static let URL_DOCTORS_INSERT = "\(URL_DB_SERVER)/PHPDatabaseCalls/doctors/insert.php?"
+    static let URL_DOCTORS_SELECT = "\(URL_DB_SERVER)/PHPDatabaseCalls/doctors/select.php?"
+    static let URL_DOCTORS_UPDATE = "\(URL_DB_SERVER)/PHPDatabaseCalls/doctors/update.php?"
     
-    static var URL_NOTIFICATIONS_GET_ALL_CALLS_ON = "\(URL_DB_SERVER)/PHPDatabaseCalls/notifications/getAllCallsOn.php?"
-    static var URL_NOTIFICATIONS_GET_ALL_TEXTS_ON = "\(URL_DB_SERVER)/PHPDatabaseCalls/notifications/getAllTextsOn.php?"
-    static var URL_NOTIFICATIONS_SELECT = "\(URL_DB_SERVER)/PHPDatabaseCalls/notifications/select.php?"
-    static var URL_NOTIFICATIONS_UPDATE = "\(URL_DB_SERVER)/PHPDatabaseCalls/notifications/update.php?"
+    static let URL_NOTIFICATIONS_GET_ALL_CALLS_ON = "\(URL_DB_SERVER)/PHPDatabaseCalls/notifications/getAllCallsOn.php?"
+    static let URL_NOTIFICATIONS_GET_ALL_TEXTS_ON = "\(URL_DB_SERVER)/PHPDatabaseCalls/notifications/getAllTextsOn.php?"
+    static let URL_NOTIFICATIONS_SELECT = "\(URL_DB_SERVER)/PHPDatabaseCalls/notifications/select.php?"
+    static let URL_NOTIFICATIONS_UPDATE = "\(URL_DB_SERVER)/PHPDatabaseCalls/notifications/update.php?"
     
-    static var URL_PATIENTS_SELECT = "\(URL_DB_SERVER)/PHPDatabaseCalls/patients/select.php?"
-    static var URL_PATIENTS_UPDATE = "\(URL_DB_SERVER)/PHPDatabaseCalls/patients/update.php?"
+    static let URL_PATIENTS_SELECT = "\(URL_DB_SERVER)/PHPDatabaseCalls/patients/select.php?"
+    static let URL_PATIENTS_UPDATE = "\(URL_DB_SERVER)/PHPDatabaseCalls/patients/update.php?"
 
     
     // Base URLs for Twilio API:
-    private static var URL_TWILIO_SERVER = "http://dukecs408-twilio.herokuapp.com"
-    static var URL_TWILIO_CALLS = "\(URL_TWILIO_SERVER)/notifyWithCall?"
-    static var URL_TWILIO_TEXTS = "\(URL_TWILIO_SERVER)/notifyWithText?"
+    private static let URL_TWILIO_SERVER = "http://dukecs408-twilio.herokuapp.com"
+    static let URL_TWILIO_CALLS = "\(URL_TWILIO_SERVER)/notifyWithCall?"
+    static let URL_TWILIO_TEXTS = "\(URL_TWILIO_SERVER)/notifyWithText?"
     
     
     // This is an abridged list of types that can be read. Full list is here: https://developer.apple.com/library/ios/documentation/HealthKit/Reference/HealthKit_Constants/index.html#//apple_ref/doc/constant_group/Body_Measurements
