@@ -17,7 +17,6 @@ class EditContactController : UIViewController {
     @IBOutlet weak var contactNumber: UITextField!
     @IBOutlet weak var saveButton: UIButton!
     
-    let patientID = UIDevice.currentDevice().identifierForVendor.UUIDString;
     var name:String!;
     var number:String!;
     var contactID:String!;
@@ -187,7 +186,7 @@ class EditContactController : UIViewController {
     
     @IBAction func saveAction(sender: UIButton) {
         // Do the saving - make request to db with all the info
-        var patientId = UIDevice.currentDevice().identifierForVendor.UUIDString;
+        var patientId = Constants.DEVICE_ID
         var nameStr : String = self.contactName.text;
         var phoneNumberStr : String = self.contactNumber.text;
         var notifications = [self.stepHighLightTuple,self.bodyMassHighLightTuple,self.oxyHighLightTuple,self.hRHighLightTuple]

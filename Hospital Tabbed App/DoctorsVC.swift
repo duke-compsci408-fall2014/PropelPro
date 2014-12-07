@@ -29,7 +29,7 @@ class DoctorsVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func populateDoctors() {
-        var deviceId = UIDevice.currentDevice().identifierForVendor.UUIDString;
+        var deviceId = Constants.DEVICE_ID
         println("Device ID: \(deviceId)");
         var urlStr = "\(Constants.URL_DOCTORS_SELECT)attribute=*&patient_id='\(deviceId)'"
         var url = NSURL(string: urlStr)

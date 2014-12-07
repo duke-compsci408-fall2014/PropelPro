@@ -181,7 +181,7 @@ class AddContactController : UIViewController {
     
     func buttonAction(sender:UIButton!)
     {
-        var patientId = UIDevice.currentDevice().identifierForVendor.UUIDString;
+        var patientId = Constants.DEVICE_ID
         var nameStr : String = nameField.text;
         var phoneNumberStr : String = phoneNumberField.text;
 //        let statIds = ["7","1","6","9"];

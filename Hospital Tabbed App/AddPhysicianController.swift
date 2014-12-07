@@ -27,7 +27,7 @@ class AddPhysicianController : UIViewController {
     
     func buttonAction(sender:UIButton!)
     {
-        var patientId = UIDevice.currentDevice().identifierForVendor.UUIDString;
+        var patientId = Constants.DEVICE_ID
         var nameStr : String = nameField.text;
         var phoneNumberStr : String = phoneNumberField.text;
         var addressStr : String = addressField.text;

@@ -34,10 +34,6 @@ class Settings : UIViewController, UITableViewDelegate {
     @IBOutlet weak var bmHigh: UITextField!
     let weightId = "1"
     
-    //device Id
-    let patient_id = UIDevice.currentDevice().identifierForVendor.UUIDString;
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -45,7 +41,7 @@ class Settings : UIViewController, UITableViewDelegate {
     }
 
     func populateSettings() {
-        var urlStr = "\(Constants.URL_BOUNDS_SELECT)attribute=*&patient_id='\(patient_id)'"
+        var urlStr = "\(Constants.URL_BOUNDS_SELECT)attribute=*&patient_id='\(Constants.DEVICE_ID)'"
         let url = NSURL(string: urlStr)
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             if error != nil {
@@ -108,7 +104,7 @@ class Settings : UIViewController, UITableViewDelegate {
         var highbound = oxiHigh.text
         
         println("saving oxi")
-        self.save(patient_id,stat_id: oxiId,lowerBound: lowbound,upperBound: highbound)
+        self.save(Constants.DEVICE_ID,stat_id: oxiId,lowerBound: lowbound,upperBound: highbound)
     }
     
     @IBAction func pedoSave(sender: AnyObject) {
@@ -116,7 +112,7 @@ class Settings : UIViewController, UITableViewDelegate {
         var highbound = pedoHigh.text
         
         println("saving pedo")
-        self.save(patient_id,stat_id: pedoId,lowerBound: lowbound,upperBound: highbound)
+        self.save(Constants.DEVICE_ID,stat_id: pedoId,lowerBound: lowbound,upperBound: highbound)
     }
     
     @IBAction func hrSave(sender: AnyObject) {
@@ -124,7 +120,7 @@ class Settings : UIViewController, UITableViewDelegate {
         var highbound = hrHigh.text
         
         println("saving heart rate")
-        self.save(patient_id,stat_id: hrId,lowerBound: lowbound,upperBound: highbound)
+        self.save(Constants.DEVICE_ID,stat_id: hrId,lowerBound: lowbound,upperBound: highbound)
     }
     
     @IBAction func bmSave(sender: AnyObject) {
@@ -132,7 +128,7 @@ class Settings : UIViewController, UITableViewDelegate {
         var highbound = bmHigh.text
         
         println("saving weight limit")
-        self.save(patient_id,stat_id: weightId,lowerBound: lowbound,upperBound: highbound)
+        self.save(Constants.DEVICE_ID,stat_id: weightId,lowerBound: lowbound,upperBound: highbound)
     }
     
     func save(patient_id:String,stat_id:String,lowerBound:String,upperBound:String){

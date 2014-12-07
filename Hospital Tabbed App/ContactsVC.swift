@@ -13,8 +13,6 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
     @IBOutlet weak var tableView: UITableView!
     var items: [Contact] = []
     
-    var deviceId = UIDevice.currentDevice().identifierForVendor.UUIDString;
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,7 +25,7 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
     }
     
     func populateContacts() {
-        var urlStr = "\(Constants.URL_CONTACTS_SELECT)attribute=*&patient_id='\(self.deviceId)'"
+        var urlStr = "\(Constants.URL_CONTACTS_SELECT)attribute=*&patient_id='\(Constants.DEVICE_ID)'"
         var url = NSURL(string: urlStr)
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
@@ -54,7 +52,7 @@ class ContactsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
     }
     
     func updateContactSettingsInTable(var contact: Contact) {
-        var urlStr = "\(Constants.URL_NOTIFICATIONS_SELECT)attribute=*&patient_id='\(self.deviceId)'&contact_id='\(contact.contactId)'"
+        var urlStr = "\(Constants.URL_NOTIFICATIONS_SELECT)attribute=*&patient_id='\(Constants.DEVICE_ID)'&contact_id='\(contact.contactId)'"
         var url = NSURL(string: urlStr)
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in

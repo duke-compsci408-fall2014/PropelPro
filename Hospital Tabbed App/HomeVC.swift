@@ -14,8 +14,6 @@ class HomeVC : UIViewController {
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var updateNameButton: UIButton!
     
-    let deviceId = UIDevice.currentDevice().identifierForVendor.UUIDString;
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchName()
@@ -31,7 +29,7 @@ class HomeVC : UIViewController {
     
     func fetchName() {
         println("fetching name")
-        var urlStr = "\(Constants.URL_PATIENTS_SELECT)attribute=*&patient_id='\(deviceId)'"
+        var urlStr = "\(Constants.URL_PATIENTS_SELECT)attribute=*&patient_id='\(Constants.DEVICE_ID)'"
         var url = NSURL(string: urlStr)
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             if error != nil {
