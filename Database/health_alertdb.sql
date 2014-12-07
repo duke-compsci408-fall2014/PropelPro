@@ -119,6 +119,17 @@ CREATE TABLE IF NOT EXISTS `stats` (
   `statUnit` varchar(100) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
+
+--
+-- Data for stats upon creation
+--
+
+INSERT INTO `stats` (`stat_id`, `statName`, `statUnit`) VALUES
+(1, 'weight', 'lb'),
+(6, 'Oximeter', '%'),
+(7, 'Pedometer', 'steps'),
+(9, 'Heart Rate', 'bpm');
+
 --
 -- Indexes for dumped tables
 --
