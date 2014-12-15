@@ -19,3 +19,12 @@ The PHP code can be found in this repository: https://github.com/wei-zheng-chen/
 Accessing MySQL database: Ask us
 
 
+## User Testing Website
+----------------------------------
+This is our user testing website and the code for it below. It recommend to clone the repository and dump into the server that you want to host the website on. 
+
+The current user testing site: http://colab-sbx-211.oit.duke.edu/user_testing/index.html
+
+Site Repo: https://github.com/wei-zheng-chen/simpleWebForUserTesting
+
+

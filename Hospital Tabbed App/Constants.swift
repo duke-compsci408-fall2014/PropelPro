@@ -15,7 +15,7 @@ struct Constants {
     
     // this can turn twilio notifications on/off when testing
     // In production, this should stay true!!!
-    static let DEBUG_NOTIFICATIONS_ON = false
+    static let DEBUG_NOTIFICATIONS_ON = true
     
     static let NOTIFICATION_TYPE_CALL = "CALL"
     static let NOTIFICATION_TYPE_TEXT = "TEXT"
@@ -26,7 +26,7 @@ struct Constants {
     static let URL_BOUNDS_SELECT = "\(URL_DB_SERVER)/PHPDatabaseCalls/bounds/select.php?"
     
     static let URL_CONTACTS_DELETE = "\(URL_DB_SERVER)/PHPDatabaseCalls/contacts/delete.php?"
-    static let URL_CONTACTS_INSERT_ALL = "\(URL_DB_SERVER)/PHPDatabaseCalls/contacts/insert.php?"
+    static let URL_CONTACTS_INSERT_ALL = "\(URL_DB_SERVER)/PHPDatabaseCalls/contacts/insertAll.php?"
     static let URL_CONTACTS_SELECT = "\(URL_DB_SERVER)/PHPDatabaseCalls/contacts/select.php?"
     static let URL_CONTACTS_UPDATE = "\(URL_DB_SERVER)/PHPDatabaseCalls/contacts/update.php?"
     
